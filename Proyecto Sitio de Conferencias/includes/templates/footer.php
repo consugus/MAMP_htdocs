@@ -63,7 +63,7 @@
 
         if($pagina == 'invitados' || $pagina == 'index'){
           echo '<script src="js/jquery.colorbox-min.js"></script>';
-        } else if ($pagina = 'conferencia') {
+        } else if ($pagina == 'conferencia') {
           echo '<script src="js/lightbox.js"></script>';
         }
     ?>

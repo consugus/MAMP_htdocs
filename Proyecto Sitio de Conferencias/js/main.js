@@ -3,18 +3,7 @@
 
     var regalo = document.getElementById("regalo");
 
-
     document.addEventListener("DOMContentLoaded", function(){
-
-        var map = L.map('mapa').setView([-31.423129, -64.152144], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([-31.423129, -64.152144]).addTo(map)
-            .bindPopup('La casa del Consugus')
-            .openPopup('qué será ésto');
 
         // Variables de Datos de Usuario
         var nombre = document.getElementById("nombre");
@@ -29,7 +18,7 @@
         // Botones y Divs
         var calcular = document.getElementById("calcular");
         var errorDiv = document.getElementById("error");
-        var btnRegistro = document.getElementById("btnRegistro");
+        var botonRegistro = document.getElementById("btnRegistro");
         var resultado = document.getElementById("lista-productos");
 
         // Variables de Extras
@@ -37,6 +26,7 @@
         var etiquetas = document.getElementById("etiquetas");
         var sumaTotal = document.getElementById("suma-total");
 
+        document.getElementById("btnRegistro").disabled = true;
 
         if(document.getElementById("calcular") ){
 
@@ -104,6 +94,14 @@
                 };
 
                 sumaTotal.innerHTML = "$ " + total.toFixed(2);
+
+                if (total > 0){
+                    document.getElementById("btnRegistro").disabled = false;
+                    document.getElementById("total_pedido").value = total.toFixed(2);
+                };
+
+
+
             });
 
             pasePorDia.addEventListener("blur", mostrarDias );
@@ -164,8 +162,6 @@
             });
 
         };
-
-
 
     }); // DOMContentLoaded
 })();

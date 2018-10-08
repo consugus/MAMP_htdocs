@@ -132,7 +132,7 @@
                     <a href="calendario.php" class="button float-rigth">Ver Todos</a>
               <?php  } // cierra el if del botón ?>
                   </div>
-              
+
             <!-- fin seminarios -->
 
             <?php // Código php para el menú de Talleres
@@ -343,9 +343,9 @@
         <h2>Testimoniales</h2>
         <div class="testimonial">
           <blockquote>
-              <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem 
-                  corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur 
-                  repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam 
+              <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem
+                  corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur
+                  repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam
                   dicta. Sunt eos quia quas repellat itaque.</p>
               <footer class="info-testimonial clearfix">
                 <img src="img/ImagenesSitioWeb/invitado1-cuadrado.jpg" alt="imagen testimonial">
@@ -355,9 +355,9 @@
         </div><!-- testimonial -->
         <div class="testimonial">
             <blockquote>
-                <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem 
-                    corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur 
-                    repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam 
+                <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem
+                    corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur
+                    repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam
                     dicta. Sunt eos quia quas repellat itaque.</p>
                 <footer class="info-testimonial clearfix">
                   <img src="img/ImagenesSitioWeb/invitado1-cuadrado.jpg" alt="imagen testimonial">
@@ -367,9 +367,9 @@
           </div><!-- testimonial -->
           <div class="testimonial">
               <blockquote>
-                <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem 
-                  corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur 
-                  repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam 
+                <p>Consequuntur repellendus iure commodi esse dicta. At et voluptas quidem
+                  corporis ipsam dicta. Sunt eos quia quas repellat itaque. Consequuntur
+                  repellendus iure commodi esse dicta. At et voluptas quidem corporis ipsam
                   dicta. Sunt eos quia quas repellat itaque.</p>
                 <footer class="info-testimonial clearfix">
                     <img src="img/ImagenesSitioWeb/invitado1-cuadrado.jpg" alt="imagen testimonial">
@@ -403,6 +403,7 @@
       </div>
     </section><!-- seccion contador regresivo -->
 
+    <script src="js/cargaMapa.js"></script>
     <?php include_once "includes/templates/footer.php" ?> <!-- Incluye el footer de la página, leyendo un archivo externo -->
 
   </body>
