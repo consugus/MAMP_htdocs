@@ -221,7 +221,7 @@
                   <small>(promoción 7% de dto)</small>
                 </label>
                 <br>
-                <input type="number" min="0" name="camisa" id="camisa_evento" placeholder="0">
+                <input type="number" min="0" name="camisas" id="camisa_evento" placeholder="0">
               </div> <!-- orden -->
               <div class="orden">
                 <label for="etiquetas">Paquete de 10 etiquetas $2
