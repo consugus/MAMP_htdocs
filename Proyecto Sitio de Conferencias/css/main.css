@@ -834,7 +834,7 @@ div.newsletter {
 }
 
 div.newsletter::before {
-  background-image: url(/img/ImagenesSitioWeb/bg-newsletter.jpg);
+  background-image: url(../img/ImagenesSitioWeb/bg-newsletter.jpg);
   content: "";
 }
 
