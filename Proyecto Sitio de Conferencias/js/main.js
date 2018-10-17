@@ -240,6 +240,7 @@ $(function(){
 
     // Colorbox
     $('.invitado-info').colorbox({inline:true, width:"50%"});
+    $('.button_newsletter').colorbox({inline:true, width:"50%"});
 });
 
 
