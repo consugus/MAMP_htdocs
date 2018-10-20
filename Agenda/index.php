@@ -84,9 +84,9 @@
         </div>
     </div>
 
-<?php
-    $conn->close();
-?>
+    <?php
+        $conn->close();
+    ?>
 
     <script src="js/app.js"></script>
 
