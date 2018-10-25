@@ -19,11 +19,13 @@
                 <input type="hidden" id="tipo" value="crear">
                 <input type="submit" class="boton" value="Crear cuenta">
             </div>
+
             <div class="campo">
                 <a href="login.php">Inicia Sesión Aquí</a>
             </div>
         </form>
     </div>
+
     <script src="js/sweetalert2.all.min.js"></script>
 
 <?php include 'inc/templates/footer.php'?>

@@ -1,19 +1,18 @@
 <?php
-    $accion = $_POST['accion'];
-    $password = $_POST['password'];
+
+    include '../funciones/conexion.php';
     $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
+    $accion = $_POST['accion'];
 
     if($accion === 'crear'){
         // código para crear los administradores
 
+
+
         // Hashear passwords
-        $opciones = array(
-            'cost' => 12
-        );
-
+        $opciones = array( 'cost' => 12, );
         $hashed_password = password_hash($password, PASSWORD_BCRYPT, $opciones ); // VariableString, AlgoritmoDeContraseñas, options
-
-        include '../funciones/conexion.php';
 
         try{
             // realizar la consulta a la base de datos
@@ -24,7 +23,7 @@
             if($stmt->affected_rows > 0 ){
                 $respuesta = array(
                     'respuesta'=> 'correcto',
-                    'id_insertado' => '$stmt->insert_id',
+                    'id_insertado' => $stmt->insert_id,
                     'tipo' => $accion
                 );
             } else{
@@ -43,18 +42,16 @@
             );
         };
 
-        echo json_encode($respuesta);
-    };
 
+    };
 
 
     if($accion === 'login'){
         // código para loggearse
-        include "../funciones/conexion.php";
 
         try{
             // seleccionar el administrador de la BD
-            $sql = "select * from usuarios where usuario = ? ";
+            $sql = "select usuario_id, usuario, password from usuarios where usuario = ? ";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('s', $usuario);
             $stmt->execute();
@@ -63,18 +60,35 @@
             $stmt->bind_result($id_usuario, $nombre_usuario, $pass_usuario);
             $stmt->fetch();
 
-
+            $respuesta = [
+                'usuario' => $usuario,
+                'nombreUsuario' => $nombre_usuario,
+                'password' => $password,
+                'pass_Usuario' => $pass_usuario
+            ];
 
             if($nombre_usuario){
-                $respuesta = array(
-                    'respuesta' => 'correcto',
-                    'id' => $id_usuario,
-                    'usuario' => $nombre_usuario,
-                    'pass' => $pass_usuario
-                );
+                // el usuario existe, verificar si el password es válido
+
+                if(password_verify($password, $pass_usuario)){
+                    // login correcto
+                    $respuesta = array(
+                        'respuesta' => 'correcto',
+                        'nombre' => $nombre_usuario
+                    );
+
+                } else{
+                    // login incorrecto, enviar error
+                    $respuesta = array(
+                        'respuesta' => 'correcto',
+                        'resultado' => 'Password incorrecto'
+                    );
+
+                };
+
             } else{
                 $respuesta = array(
-                    'error' => 'Usuario inexistente'
+                    'error' => $nombre_usuario
                 );
             };
 
@@ -90,10 +104,9 @@
             );
         };
 
-        echo json_encode($respuesta);
     };
 
-    
+    echo json_encode($respuesta);
 
 
 ?>

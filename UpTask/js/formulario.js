@@ -9,9 +9,11 @@ function validarRegistro(e){
         password = document.querySelector("#password").value,
         tipo = document.querySelector("#tipo").value;
 
+        console.log("usuario: " + usuario + "\tpassword: " + password + "\ttipo: " + tipo);
+
 
     if(usuario === "" || password === ""){
-        // si falla la validación mostrar un sweetAlert
+        // si alguno de los campos está vacío mostrar un sweetAlert
         swal({
             type: "error",
             title: "Error",
@@ -21,7 +23,7 @@ function validarRegistro(e){
           })
 
     } else {
-        // Si todo anda ok, mandar el Ajax
+        // Si completó los dos campos, mandar el Ajax
         var datos = new FormData();
         datos.append('usuario', usuario);
         datos.append('password', password);
@@ -48,9 +50,9 @@ function validarRegistro(e){
                             type: "success"
                         });
                     }
-                    // else if(respuesta.tipo === "login"){
+                    else if(respuesta.tipo === "login"){
 
-                    // }
+                    }
                 } else {
                     // hubo un error al intentar crear el usuario
                     swal({
