@@ -51,7 +51,15 @@ function validarRegistro(e){
                         });
                     }
                     else if(respuesta.tipo === "login"){
-
+                        swal({
+                            title: "Login correcto",
+                            text: "Presiona ok para acceder al index",
+                            type: "success"
+                        }).then(resultado => {// redirigir al index
+                            if(resultado.value){
+                                window.location.href = 'index.php';
+                            }
+                        });
                     }
                 } else {
                     // hubo un error al intentar crear el usuario

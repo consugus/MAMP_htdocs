@@ -9,7 +9,7 @@
         <form id="formulario" class=" caja-login" method="post">
             <div class="campo">
                 <label for="usuario">Usuario: </label>
-                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
             </div>
             <div class="campo">
                 <label for="password">Password: </label>

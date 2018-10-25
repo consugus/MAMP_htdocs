@@ -1,5 +1,4 @@
 <?php
-
     include '../funciones/conexion.php';
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
@@ -7,8 +6,6 @@
 
     if($accion === 'crear'){
         // código para crear los administradores
-
-
 
         // Hashear passwords
         $opciones = array( 'cost' => 12, );
@@ -32,17 +29,12 @@
                 );
             };
 
-            $stmt->close();
-            $conn->close();
-
         } catch(Exception $e){
             // capturar la excepción
             $respuesta = array(
                 'pass' => $e->getMessage()
             );
         };
-
-
     };
 
 
@@ -60,30 +52,29 @@
             $stmt->bind_result($id_usuario, $nombre_usuario, $pass_usuario);
             $stmt->fetch();
 
-            $respuesta = [
-                'usuario' => $usuario,
-                'nombreUsuario' => $nombre_usuario,
-                'password' => $password,
-                'pass_Usuario' => $pass_usuario
-            ];
-
             if($nombre_usuario){
                 // el usuario existe, verificar si el password es válido
 
                 if(password_verify($password, $pass_usuario)){
+                    // Iniciar la sesión
+                    session_start();
+                    $_SESSION['nombre'] = $nombre_usuario;
+                    $_SESSION['id'] = $id_usuario;
+                    $_SESSION['login'] = true;
+
                     // login correcto
                     $respuesta = array(
                         'respuesta' => 'correcto',
-                        'nombre' => $nombre_usuario
+                        'nombre' => $nombre_usuario,
+                        'tipo' => $accion
                     );
 
                 } else{
                     // login incorrecto, enviar error
                     $respuesta = array(
                         'respuesta' => 'correcto',
-                        'resultado' => 'Password incorrecto'
+                        'resultado' => 'Password incorrecto',
                     );
-
                 };
 
             } else{
@@ -92,19 +83,16 @@
                 );
             };
 
-
-            $stmt->close();
-            $conn->close();
-
-
         } catch(Exception $e){
             // capturar la excepción
             $respuesta = array(
                 'pass' => $e->getMessage()
             );
         };
-
     };
+
+    $stmt->close();
+    $conn->close();
 
     echo json_encode($respuesta);
 

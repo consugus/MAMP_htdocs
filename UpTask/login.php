@@ -1,6 +1,15 @@
-<?php include 'inc/templates/header.php'?>
-<?php include 'inc/funciones/funciones.php'?>
-<?php include 'inc/funciones/conexion.php'?>
+<?php
+    session_start();
+    include 'inc/templates/header.php';
+    include 'inc/funciones/funciones.php';
+    include 'inc/funciones/conexion.php';
+
+    if(isset($_GET['cerrar_sesion'])){
+        $_SESSION = array();
+    };
+
+?>
+
 
 <body class="login">
 
@@ -9,7 +18,7 @@
         <form id="formulario" class="caja-login" method="post">
             <div class="campo">
                 <label for="usuario">Usuario: </label>
-                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus>
             </div>
             <div class="campo">
                 <label for="password">Password: </label>
