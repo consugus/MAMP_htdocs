@@ -5,7 +5,7 @@
     $accion = $_POST['accion'];
 
     if($accion === 'crear'){
-        // código para crear los administradores
+    // código para crear los administradores
 
         // Hashear passwords
         $opciones = array( 'cost' => 12, );
@@ -32,7 +32,7 @@
         } catch(Exception $e){
             // capturar la excepción
             $respuesta = array(
-                'pass' => $e->getMessage()
+                'error' => $e->getMessage()
             );
         };
     };
@@ -86,7 +86,7 @@
         } catch(Exception $e){
             // capturar la excepción
             $respuesta = array(
-                'pass' => $e->getMessage()
+                'error' => $e->getMessage()
             );
         };
     };

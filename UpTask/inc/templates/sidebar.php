@@ -6,16 +6,18 @@
             <div class="panel lista-proyectos">
                 <h2>Proyectos</h2>
                 <ul id="proyectos">
-                    <li>
-                        <a href="#">
-                            Diseño Página Web
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Nuevo Sitio en wordPress
-                        </a>
-                    </li>
+                    <?php
+                        $proyectos = obtenerProyectos();
+                        if($proyectos){
+                            foreach ($proyectos as $proyecto) { ?>
+
+                                <a href="index.php?id_proyecto=<?php echo $proyecto['proyecto_id'] ?>" id=" <?php echo $proyecto['proyecto_id'] ?> ">
+                                    <?php echo $proyecto['proyecto_nombre'] ?>
+                                </a>
+                                <br> <br>
+
+                    <?php   }   };
+                    ?>
                 </ul>
             </div>
         </aside>
