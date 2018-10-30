@@ -19,4 +19,15 @@
         };
     };
 
+
+    // Obtener nombre del proyecto por id
+    function obtenerNombreProyecto($id=null){
+        include "conexion.php";
+        try{
+            return $conn->query("SELECT proyecto_nombre FROM proyectos WHERE proyecto_id={$id}");
+        }catch(Exception $e){
+            echo "Error!" . $e->getMessage();
+        };
+    };
+
 ?>

@@ -67,7 +67,7 @@ function guardarProyectoDB(nombreProyecto){
                         // Inyectar en el html
                         var nuevoProyecto = document.createElement("LI");
                         nuevoProyecto.innerHTML = `
-                            <a href="index.php?id_proyecto=${id_proyecto}" id="${id_proyecto}">
+                            <a href="index.php?id_proyecto=${id_proyecto} id=${id_proyecto}">
                                 ${nombre_proyecto}
                             </a>
                         `;
@@ -85,11 +85,7 @@ function guardarProyectoDB(nombreProyecto){
                             // Redireccionar a la nueva URL
                             window.location.href = "index.php?id_proyecto=" + id_proyecto;
                             }
-
                         });
-
-
-
                     } else{
                         // Se actualizó el proyecto o se eliminó
 
