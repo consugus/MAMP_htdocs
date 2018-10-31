@@ -39,7 +39,7 @@
                     <input type="text" placeholder="Nombre Tarea" class="nombre-tarea">
                 </div>
                 <div class="campo enviar">
-                    <input type="hidden" id="<?php echo $id_proyecto; ?>" value="id_proyecto">
+                    <input type="hidden" id = "id_proyecto" value="<?php echo $id_proyecto; ?>" value="id_proyecto">
                     <input type="submit" class="boton nueva-tarea" value="Agregar">
                 </div>
             </form>
@@ -47,7 +47,9 @@
             <?php
                 else:
                     // Si no hay proyectos seleccionados
-                    echo "<p>Selecciona algún proyecto en la barra lateral para las tareas</p>";
+                    echo '<div id="parrafo">';
+                        echo "<p>Selecciona algún proyecto en la barra lateral para las tareas</p>";
+                    echo '</div>';
                 endif; ?>
 
             <h2>Listado de tareas:</h2>

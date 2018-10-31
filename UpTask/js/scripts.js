@@ -2,6 +2,10 @@ var listaDeProyectos = document.querySelector("ul#proyectos");
 
 (function eventListeners(){
     document.querySelector(".crear-proyecto a").addEventListener("click", nuevoProyecto);
+
+    // botón para una nueva tarea
+    document.querySelector(".nueva-tarea").addEventListener('click', agregarTarea);
+
 })();
 
 
@@ -103,6 +107,42 @@ function guardarProyectoDB(nombreProyecto){
 
     // enviar el request
     xhr.send(datos);
+};
 
+function agregarTarea(e){
+    e.preventDefault();
+    var nombreTarea = document.querySelector(".nombre-tarea").value;
+    if(!nombreTarea){
+        swal({
+            title: "Error",
+            text: "No se ingresó ninguna tarea",
+            type: "error"
+        });
+    } else{
+        // crear el objeto xhr
+        var xhr = new XMLHttpRequest();
+
+        // crear el formData
+        var datos = new FormData();
+        datos.append('tarea', nombreTarea);
+        datos.append('accion', 'crear');
+        datos.append('proyecto_id', document.querySelector("#id_proyecto").value);
+
+        // abrir el xhr
+        xhr.open("POST", "inc/modelos/modelo-tareas.php", true);
+
+        // onLoad
+        xhr.onload = function(){
+            if(xhr.status === 200){
+                var respuesta = JSON.parse(xhr.responseText);
+                console.log(respuesta);
+            };
+        };
+
+        //send
+        xhr.send(datos);
+    };
 
 };
+
+
