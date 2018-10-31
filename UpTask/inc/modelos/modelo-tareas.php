@@ -1,6 +1,5 @@
 <?php
     //echo json_encode($_POST);
-
     include '../funciones/conexion.php';
     $accion = $_POST['accion'];
     $id_proyecto = (int)$_POST['proyecto_id'];
@@ -17,10 +16,10 @@
             $stmt->execute();
             if($stmt->affected_rows > 0 ){
                 $respuesta = array(
-                    'respuesta'       => 'correcto',
-                    'id_insertado'    => $stmt->insert_id,
-                    'tipo'            => $accion,
-                    'tarea' => $tarea
+                    'respuesta'    => 'correcto',
+                    'id_insertado' => $stmt->insert_id,
+                    'tipo'         => $accion,
+                    'tarea'        => $tarea
                 );
             } else{
                 $respuesta = array(

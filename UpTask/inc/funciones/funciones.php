@@ -30,4 +30,17 @@
         };
     };
 
+    function obtenerTareasProyecto($id_proyecto=null){
+        include "conexion.php";
+        try{
+            return $conn->query("SELECT tarea_id, tarea_nombre, estado FROM tareas WHERE proyecto_id={$id_proyecto}");
+        }catch(Exception $e){
+            echo "Error!" . $e->getMessage();
+        };
+    };
+
+
+
+
+
 ?>

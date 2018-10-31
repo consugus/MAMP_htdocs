@@ -57,13 +57,30 @@
             <div class="listado-pendientes">
                 <ul>
 
-                    <li id="tarea:<?php echo $tarea['id'] ?>" class="tarea">
-                    <p>Cambiar el Logotipo</p>
-                        <div class="acciones">
-                            <i class="far fa-check-circle"></i>
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </li>
+                    <?php
+                            // Obtener las tareas del proyecto actual
+                            $tareas = obtenerTareasProyecto($id_proyecto);
+                            if($tareas->num_rows > 0){
+                                // Existen tareas
+                                foreach($tareas as $tarea): ?>
+                                <?php // var_dump($tarea); ?>
+                                <li id="tarea:<?php echo $tarea['tarea_id'] ?>" class="tarea">
+                                <p><?php echo $tarea['tarea_nombre'] ?></p>
+                                    <div class="acciones">
+                                        <i class="far fa-check-circle <?php echo ($tarea['estado'] === '1' ? 'completo': '')  ?>"></i>
+                                        <i class="fas fa-trash"></i>
+                                    </div>
+                                </li>
+                        <?php   endforeach;
+                            } else{
+                                echo "<p>No hay tareas en éste proyecto<?p>";
+                            };
+                            echo "<pre>";
+                                // var_dump($tareas);
+                            echo "</pre>";
+
+                    ?>
+
                 </ul>
             </div>
         </main>

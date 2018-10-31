@@ -134,8 +134,47 @@ function agregarTarea(e){
         // onLoad
         xhr.onload = function(){
             if(xhr.status === 200){
-                var respuesta = JSON.parse(xhr.responseText);
-                console.log(respuesta);
+                var tmp = JSON.parse(xhr.responseText),
+                    resultado = tmp.respuesta,
+                    tarea = tmp.tarea,
+                    id_insertado = tmp.id_insertado,
+                    tipo = tmp.tipo;
+
+                if(resultado === "correcto"){
+                    // se agregó correctamente, crear el aviso
+                    if(tipo === "crear"){
+                        swal({
+                            title: "Tarea creada",
+                            text: "La tarea " + tarea + " fue creada exitosamente",
+                            type: "success"
+                        });
+                        // construir el HTML
+                        var nuevaTarea = document.createElement("LI");
+                        nuevaTarea.id = "tarea" + id_insertado;
+                        nuevaTarea.classList.add("tarea");
+                        nuevaTarea.innerHTML = `
+                            <p>${tarea}</p>
+                            <div class="acciones">
+                                <i class="far fa-check-circle"></i>
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        `;
+
+                        // agretar el HTML agregado al documento
+                        var listado = document.querySelector(".listado-pendientes ul");
+                        listado.appendChild(nuevaTarea);
+
+                        // limpiar el formulario
+                        document.querySelector(".agregar-tarea").reset();
+                    };
+                } else{
+                    // hubo un error
+                    swal({
+                        title: "Error",
+                        text: "No se ingresó ninguna tarea",
+                        type: "error"
+                    });
+                };
             };
         };
 

@@ -11,7 +11,8 @@
                         if($proyectos){
                             foreach ($proyectos as $proyecto) { ?>
                                 <li>
-                                    <a href="index.php?id_proyecto=<?php echo $proyecto['proyecto_id'] ?>" id="<?php echo $proyecto['proyecto_id'] ?>">
+                                    <?php //echo "<pre>"; var_dump($proyecto); echo "</pre>;"?>
+                                    <a href="index.php?id_proyecto=<?php echo $proyecto['proyecto_id'] ?>" id="proyecto:<?php echo $proyecto['proyecto_id'] ?>">
                                     <?php echo $proyecto['proyecto_nombre'] ?>
                                     </a>
                                 </li>
