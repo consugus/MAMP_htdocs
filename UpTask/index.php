@@ -73,7 +73,7 @@
                                 </li>
                         <?php   endforeach;
                             } else{
-                                echo "<p>No hay tareas en éste proyecto<?p>";
+                                echo "<p class='lista-vacia'>No hay tareas en éste proyecto<?p>";
                             };
                             echo "<pre>";
                                 // var_dump($tareas);

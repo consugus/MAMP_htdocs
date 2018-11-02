@@ -6,6 +6,9 @@ var listaDeProyectos = document.querySelector("ul#proyectos");
     // botón para una nueva tarea
     document.querySelector(".nueva-tarea").addEventListener('click', agregarTarea);
 
+    // botones para las acciones de las tareas
+    document.querySelector(".listado-pendientes").addEventListener('click', accionesTareas);
+
 })();
 
 
@@ -41,8 +44,6 @@ function guardarProyectoDB(nombreProyecto){
     // nuevoProyecto.innerHTML = `<a href="#"> ${nombreProyecto} </a> `;
     // listaDeProyectos.appendChild(nuevoProyecto);
 
-
-
     // Crear el objeto AJAX
     var xhr = new XMLHttpRequest();
 
@@ -71,7 +72,7 @@ function guardarProyectoDB(nombreProyecto){
                         // Inyectar en el html
                         var nuevoProyecto = document.createElement("LI");
                         nuevoProyecto.innerHTML = `
-                            <a href="index.php?id_proyecto=${id_proyecto} id=${id_proyecto}">
+                            <a href="index.php?id_proyecto=${id_proyecto}" id="proyecto:${id_proyecto}">
                                 ${nombre_proyecto}
                             </a>
                         `;
@@ -177,11 +178,108 @@ function agregarTarea(e){
                 };
             };
         };
-
         //send
         xhr.send(datos);
     };
 
+    //eliminar mensaje de que no hay elementos en la lista
+    var parrafoListaVacia = document.querySelectorAll(".lista-vacia");
+    if(parrafoListaVacia.length > 0){
+        document.querySelector(".lista-vacia").remove();
+    };
+
 };
 
+// Cambia el estado de las tareas o las elimina
+function accionesTareas(e){
+    e.preventDefault();
+    // console.log(e.target);
 
+    //idTareaSeleccionada = getIdTarea(e.target);
+    tareaSeleccionada = getIdTarea(e.target);
+    idTareaSeleccionada = tareaSeleccionada.id.split(":")[1];
+
+    if(e.target.classList.contains('fa-check-circle')){
+        //console.log("cliqueaste en el check");
+        if(e.target.classList.contains('completo')){
+            e.target.classList.remove('completo');
+            cambiarElEstadoDeLaTarea(idTareaSeleccionada, 0); // Si contiene "1", que se lo cambie al nuevo estado 0
+        }else{
+            e.target.classList.add('completo');
+            cambiarElEstadoDeLaTarea(idTareaSeleccionada, 1); // Si contiene "0", que se lo cambie al nuevo estado 1
+        };
+    } else if(e.target.classList.contains('fa-trash')){
+        //console.log("cliqueaste en el tacho de basura");
+        eliminarTarea(tareaSeleccionada);
+    };
+
+};
+
+function getIdTarea(str){
+    return str.parentElement.parentElement;
+};
+
+// Cambiar el estado de una tarea
+function cambiarElEstadoDeLaTarea(idTarea, nuevoEstado){
+    // Crear llamado Ajax
+    var xhr = new XMLHttpRequest();                             // Paso 1
+    var datos = new FormData();                                 // Paso 2
+    datos.append("tarea_id", idTarea);
+    datos.append("accion", "actualizar");
+    datos.append("estado", nuevoEstado);
+    xhr.open("POST", "inc/modelos/modelo-tareas.php", true);    // Paso 3
+
+    xhr.onload = function(){                                    // Paso 4
+        if( this.status === 200 ){
+            // Código a ejecutar
+            console.log(JSON.parse(xhr.responseText));
+        };
+    };
+    xhr.send(datos);                                            // Paso 5
+};
+
+function eliminarTarea(tareaSeleccionada){
+    // console.log("quieres eliminar la tarea " + idTarea);
+
+    idTarea= tareaSeleccionada.id.split(":")[1];
+    //console.log(idTarea);
+
+    // primero lanzamos una advertencia
+    swal({
+        title: '¿Estás seguro?',
+        text: "Esta acción no se puede deshacer",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar la tarea!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+            swal( 'Eliminada!', 'La tarea fue eliminada.', 'success' );
+            // console.log("acá va el código para eliminar la tarea");
+            // Borrar de la BD
+            var xhr = new XMLHttpRequest();                             // Paso 1
+            var datos = new FormData();                                 // Paso 2
+            datos.append("tarea_id", idTarea);
+            datos.append("accion", "eliminar");
+            xhr.open("POST","inc/modelos/modelo-tareas.php",true);      // Paso 3
+            xhr.onload = function(){                                    // Paso 4
+                if(xhr.status === 200){ // si todo está ok, ejecutar el código
+                    console.log(JSON.parse(xhr.responseText));
+                };
+            };
+            xhr.send(datos);                                            // Paso 5
+            // Borrar del html
+            tareaSeleccionada.remove();
+
+            // Comprobar que queden otras tareas en la lista o mostrar el cartel
+            var listaDeTareasRestantes = document.querySelectorAll("li.tarea");
+            if(listaDeTareasRestantes.length === 0){
+                var mensaje = "<p class='lista-vacia'>No hay tareas en éste proyecto<?p>";
+                document.querySelector(".listado-pendientes ul").innerHTML = mensaje;
+            };
+
+        };
+      });
+};
