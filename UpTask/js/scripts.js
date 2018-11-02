@@ -242,7 +242,6 @@ function eliminarTarea(tareaSeleccionada){
     // console.log("quieres eliminar la tarea " + idTarea);
 
     idTarea= tareaSeleccionada.id.split(":")[1];
-    //console.log(idTarea);
 
     // primero lanzamos una advertencia
     swal({
@@ -257,7 +256,6 @@ function eliminarTarea(tareaSeleccionada){
       }).then((result) => {
         if (result.value) {
             swal( 'Eliminada!', 'La tarea fue eliminada.', 'success' );
-            // console.log("acá va el código para eliminar la tarea");
             // Borrar de la BD
             var xhr = new XMLHttpRequest();                             // Paso 1
             var datos = new FormData();                                 // Paso 2
