@@ -23,7 +23,7 @@
         ?>
 
         <section class="invitados contenedor seccion">
-            <h2>Invitados</h2>
+            <h2 id="invitados">Invitados</h2>
             <ul class="lista-invitados clearfix">
 
                 <?php while($invitados = $resultado->fetch_assoc() ) { ?>

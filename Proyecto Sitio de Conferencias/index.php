@@ -18,7 +18,7 @@
       <div class="contenido-programa">
         <div class="contenedor">
           <div class="programa-evento">
-            <h2>Programa del evento</h2>
+            <h2 id="programa">Programa del evento</h2>
 
         <?php
             try{
@@ -287,7 +287,7 @@
     </section><!-- seccion parallax -->
 
     <section class="precios seccion">
-      <h2>Precios</h2>
+      <h2 id="precios">Precios</h2>
       <div class="contenedor">
         <ul class="lista-precios clearfix">
           <li>

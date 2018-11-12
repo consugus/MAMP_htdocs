@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="css/all.min.css">
   <link rel="stylesheet" href="css/main.css">
 
+  <!-- Para que funcione anno.js -->
+  <link rel="stylesheet" href="css/anno.css">
+
   <?php
       // almacena en archivo el nombre de la página que está abierta
       // en nuestro proyecto una página podra ser invitados.php
@@ -81,6 +84,7 @@
         </div>
 
         <nav class="navegacion-principal hidden">
+          <a href="#" class="button" id="tour">Tour</a>
           <a href="conferencia.php">Conferencia</a>
           <a href="calendario.php">Calendario</a>
           <a href="invitados.php">Invitados</a>

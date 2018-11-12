@@ -89,11 +89,13 @@
     <script src="js/jquery.countdown.min.js"></script>
     <script src="js/jquery.lettering.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/anno.js"></script>
+    <script src="js/jquery-scrollintoview.js"></script>
 
     <!-- Código de Mailchimp para la generación de la suscripción a la lista de correos -->
     <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"4a0a16cfabe16bae5c3d3993c","lid":"de8e632018","uniqueMethods":true}) })</script>
 
-    <?php
+    <?php       // carga selectiva de colorbox.js o lightbox.js
         // almacena en archivo el nombre de la página que está abierta
         // en nuestro proyecto una página podra ser invitados.php
         $archivo = basename($_SERVER['PHP_SELF']); // <-- almacenará 'invitados.php'
@@ -113,6 +115,7 @@
     ?>
 
     <script src="js/main.js"></script>
+    <script src="js/extraFunctionsAnno.js"></script>
 
 
     <!--

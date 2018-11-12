@@ -231,7 +231,7 @@ $(function(){
     };
 
     // Animación cuenta regresiva
-    $(".cuenta-regresiva").countdown("2018/10/23", function(event){
+    $(".cuenta-regresiva").countdown("2018/12/24", function(event){
         $("#dias").html(event.strftime("%D"));
         $("#horas").html(event.strftime("%H"));
         $("#min").html(event.strftime("%M"));
