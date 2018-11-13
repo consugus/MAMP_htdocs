@@ -84,7 +84,7 @@
         </div>
 
         <nav class="navegacion-principal hidden">
-          <a href="#" class="button" id="tour">Tour</a>
+          <a href="#" id="tour" class="button">Tour</a>
           <a href="conferencia.php">Conferencia</a>
           <a href="calendario.php">Calendario</a>
           <a href="invitados.php">Invitados</a>
