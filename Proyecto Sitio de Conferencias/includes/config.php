@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //url aquispe
 define('URL_SITIO', '');
@@ -12,3 +12,4 @@ $apiContext = new \PayPal\Rest\ApiContext(
     )
 );
 
+?>
