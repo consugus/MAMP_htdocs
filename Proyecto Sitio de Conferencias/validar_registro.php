@@ -1,4 +1,5 @@
-<?php if(isset($_POST['submit'])){
+<?php
+    if(isset($_POST['submit'])){
                 $nombre = $_POST['nombre'];
                 $apellido = $_POST['apellido'];
                 $email = $_POST['eMail'];
@@ -40,7 +41,8 @@
                     echo $e->getMessage();
                 }
             ?>
-        <?php } ?>
+    <?php } ?>
+
 <?php include_once "includes/templates/header.php" ?>
 
     <section class="seccion contenedor">

@@ -1,6 +1,8 @@
 var tour = document.getElementById("tour");
 tour.addEventListener("click", executeAnnoTour);
 
+// console.log("llegó al script de tour");
+
 function executeAnnoTour(){
 
     var intro =   new Anno([
