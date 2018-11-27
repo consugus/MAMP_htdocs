@@ -1,7 +1,6 @@
 <?php
 
-//url aquispe
-define('URL_SITIO', 'http://localhost/Proyecto/Sitio%20de%20Conferencias/registro.php');
+define('URL_SITIO', 'http://localhost/Proyecto%20Sitio%20de%20Conferencias');
 
 require 'paypal/autoload.php';
 

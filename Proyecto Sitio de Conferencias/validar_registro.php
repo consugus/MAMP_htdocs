@@ -12,22 +12,23 @@
                 $boletos = $_POST['boletos'];
                 include_once "includes/funciones/funciones.php";
                 $pedido = productos_json($boletos, $camisas, $etiquetas);
-                echo "<pre>";
-                    var_dump($pedido);
-                echo "<pre>";
+
+                //echo "<pre>";  var_dump($pedido);  echo "<pre>";
+
                 // Eventos
                 $eventos = $_POST['registro'];
                 $registro = eventos_json($eventos);
                 try{
                     require_once('includes/funciones/dbconnection.php');
-                    $query = "INSERT INTO registrados ( nombre_registrado, ";
-                    $query .= "                         apellido_registrado, ";
-                    $query .= "                         email_registrado, ";
-                    $query .= "                         fecha_registro, ";
-                    $query .= "                         pases_articulos, ";
-                    $query .= "                         talleres_registrados, ";
-                    $query .= "                         regalo, ";
-                    $query .= "                         total_pagado )";
+                    $query = "INSERT INTO registrados (";
+                    $query .= "nombre_registrado, ";
+                    $query .= "apellido_registrado, ";
+                    $query .= "email_registrado, ";
+                    $query .= "fecha_registro, ";
+                    $query .= "pases_articulos, ";
+                    $query .= "talleres_registrados, ";
+                    $query .= "regalo, ";
+                    $query .= "total_pagado )";
                     $query .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($query);
                     // Se coloca una legra s por cada parámetro que se ingresa que no sea un entero, y una letra

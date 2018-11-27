@@ -13,16 +13,13 @@
             <?php
                 $resultado = (bool) $_GET['exito'];
                 $paymentId = $_GET['paymentId'];
-    
+
 
                 if($resultado == true) {
-                      echo "El pago se realizo correctamente! ";
+                      echo "El pago se realizo correctamente! </br> ";
                       echo "El id es {$paymentId} ";
                 }
-            
              ?>
         </div>
   </body>
-  
-  
 </html>
