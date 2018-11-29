@@ -13,8 +13,6 @@
                 include_once "includes/funciones/funciones.php";
                 $pedido = productos_json($boletos, $camisas, $etiquetas);
 
-                //echo "<pre>";  var_dump($pedido);  echo "<pre>";
-
                 // Eventos
                 $eventos = $_POST['registro'];
                 $registro = eventos_json($eventos);
@@ -31,14 +29,14 @@
                     $query .= "total_pagado )";
                     $query .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($query);
-                    // Se coloca una legra s por cada parámetro que se ingresa que no sea un entero, y una letra
-                    // i por cada valor númerico
+                    // Se coloca una letra s por cada parámetro alfabético que se ingresa (string), y una letra
+                    // i por cada valor númerico (integer)
                     $stmt ->bind_param("ssssssis", $nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total);
                     $stmt->execute();
                     $stmt->close();
                     $conn->close();
                     header("Location: validar_registro.php?Exitoso=1");
-                } catch(\Exception $e){
+                } catch(Exception $e){
                     echo $e->getMessage();
                 }
             ?>

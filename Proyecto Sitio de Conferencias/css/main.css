@@ -1144,6 +1144,24 @@ div.cboxElement {
   text-align: center;
 }
 
+.resultado{
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.correcto{
+  background-color:aquamarine;
+  color:black;
+
+}
+
+.error{
+  background-color:crimson;
+}
+
 
 /* ==========================================================================
    Helper classes
