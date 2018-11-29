@@ -107,6 +107,10 @@ foreach ($pedido_extra as $key => $value) {
 $listaArticulos = new ItemList();
 $listaArticulos->setItems($arreglo_pedido);
 
+// $detalles = new Details();
+// $detalles->setShipping($envio)
+//           ->setSubtotal($precio);
+
 $cantidad = new Amount();
 $cantidad->setCurrency('USD')
          ->setTotal($total);
