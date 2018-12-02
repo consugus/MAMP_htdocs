@@ -12,3 +12,7 @@ user-panel>.info{
     font-size: 1.2em;
     font-weight: bold;
 }
+
+.login-page .main-footer{
+    display: none;
+}
