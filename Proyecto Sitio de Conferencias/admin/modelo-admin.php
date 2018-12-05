@@ -45,10 +45,15 @@ if( isset($_POST['registro']) && $_POST['registro'] == "nuevo" ){
 
 // editar-admin
 if(isset($_POST['registro']) && $_POST['registro'] == "actualizar" ){
-    // die(json_encode($_POST));
     try {
-        $stmt = $conn->prepare("UPDATE administradores SET adminUsuario = ?, adminNombre = ?, adminPassword = ? WHERE adminId = ? ");
-        $stmt->bind_param("sssi", $usuario, $nombre, $password_hashed, $id_registro);
+
+        if(empty($_POST['password'])){
+            $stmt = $conn->prepare("UPDATE administradores SET adminUsuario = ?, adminNombre = ?, editado = NOW() WHERE adminId = ? ");
+            $stmt->bind_param("ssi", $usuario, $nombre, $id_registro);
+        } else {
+            $stmt = $conn->prepare("UPDATE administradores SET adminUsuario = ?, adminNombre = ?, adminPassword = ?, editado = NOW() WHERE adminId = ? ");
+            $stmt->bind_param("sssi", $usuario, $nombre, $password_hashed, $id_registro);
+        };
         $stmt->execute();
         if($stmt->affected_rows){
             $respuesta = array(
@@ -83,7 +88,7 @@ if(isset($_POST['registro'] ) &&(int)$_POST['log-admin'] == 1 ){
         $stmt->bind_param( "s", $usuario);
         $stmt->execute();
 
-        $stmt->bind_result($idAdmin, $usuarioAdmin, $nombreAdmin, $passwordAdmin);
+        $stmt->bind_result($idAdmin, $usuarioAdmin, $nombreAdmin, $passwordAdmin, $editado);
         if($stmt->affected_rows){
             $existe = $stmt->fetch();
             if($existe){
