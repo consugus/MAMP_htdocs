@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="css/admin.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../css/sweetalert2.min.css">
+  <!-- DataTables.Bootstraps -->
+  <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

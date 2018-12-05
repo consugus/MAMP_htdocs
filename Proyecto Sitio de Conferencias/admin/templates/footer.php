@@ -1,9 +1,9 @@
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
+    <!-- <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    reserved. -->
   </footer>
 
   <!-- Control Sidebar -->
@@ -219,10 +219,14 @@
 <script src="../js/sweetalert2.all.min.js" ></script>
 <!-- Personal JavaScript code -->
 <script src="js/admin-ajax.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.sidebar-menu').tree()
-    })
-</script>
+<!-- jquery.dataTables.min.js -->
+<script src="js/jquery.dataTables.min.js"></script>
+<!-- dataTables.bootstrap.min.js -->
+<script src="js/dataTables.bootstrap.min.js"></script>
+<!-- jquery.slimscroll.min.js -->
+<script src="js/jquery.slimscroll.min.js"></script>
+
+<script src="js/app.js"></script>
+
 </body>
 </html>

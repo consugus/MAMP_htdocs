@@ -5,7 +5,7 @@ $(document).ready(function(){
         var datos = $(this).serializeArray();
 
         $.ajax({
-            type: $(this).attr('method'), // PoOST
+            type: $(this).attr('method'), // POST
             data: datos,
             url:  $(this).attr('action'), // // va a insertar-admin.php
             datatype: 'json',
@@ -37,24 +37,38 @@ $(document).ready(function(){
         });
     });
 
-
+    var resultado;
     $('#login-admin').on('submit', function(e){
-        console.log("Hola");
-        // e.preventDefault();
+        e.preventDefault();
         var datos = $(this).serializeArray();
-        
         $.ajax({
             type: $(this).attr('method'), // POST
             data: datos,
             url:  $(this).attr('action'), // va a insertar-admin.php
             datatype: 'json',
             success: function(data){
-                var resultado = JSON.parse(data);
-                console.log(resultado);
-
+                resultado = JSON.parse(data);
+                if(resultado.respuesta == "exitoso"){
+                    swal({
+                        position: 'center',
+                        type: 'success',
+                        title: 'Bienvenido/a, ' + resultado.nombreAdmin,
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                        setTimeout(function(){
+                            window.location.href = "admin-area.php";
+                        }, 3000);
+                } else {
+                swal({
+                    position: 'center',
+                    type: 'error',
+                    title: 'Usuario o password incorrectos',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })};
             }
         });
     });
-
 }); // end $(document).ready()
 
