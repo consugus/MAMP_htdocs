@@ -3,6 +3,7 @@
     // al principio de cualquier otro código de la página
     include_once "funciones/sesiones.php";
     include_once "templates/header.php";
+    include_once "funciones/funciones.php";
     include_once "templates/barra.php";
     include_once "templates/navegacion.php";
 ?>
@@ -26,7 +27,7 @@
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Crear aministrador</h3>
+      <h3 class="box-title">Crear administrador</h3>
       <div class="box-body">
 
         <div class="box box-primary">
@@ -35,7 +36,7 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form" name="crear-admin" id="crear-admin" method="post" action="insertar-admin.php">
+          <form role="form" name="guardar-registro" id="guardar-registro" method="post" action="modelo-admin.php">
             <div class="box-body">
               <div class="form-group">
                 <label for="usuario">Usuario: </label>
@@ -51,7 +52,7 @@
               </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <input type="hidden" name="agregar-admin" value="1">
+                <input type="hidden" name="registro" value="nuevo">
                 <button type="submit" class="btn btn-primary" >Agregar</button>
             </div>
           </form>

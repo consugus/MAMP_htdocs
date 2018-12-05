@@ -48,8 +48,8 @@
                             <td><?php echo $admin['adminUsuario'] ?></td>
                             <td><?php echo $admin['adminNombre'] ?></td>
                             <td>
-                              <a href="editar-admin.php?id=><?php echo $admin['adminId']; ?>" class="btn bg-orange btn-flat margin"> <i class="fa fa-pencil"></i>
-                              <a href="editar-admin.php?id=><?php echo $admin['adminId']; ?>" class="btn bg-maroon btn-flat margin" data-tipo="admin"> <i class="fa fa-trash borrar-registro"></i>
+                              <a href="editar-admin.php?id=<?php echo $admin['adminId']; ?>" class="btn bg-orange btn-flat margin"> <i class="fa fa-pencil"></i>
+                              <a href="editar-admin.php?id=<?php echo $admin['adminId']; ?>" class="btn bg-maroon btn-flat margin" data-tipo="admin"> <i class="fa fa-trash borrar-registro"></i>
                               </a>
                           </tr>
 

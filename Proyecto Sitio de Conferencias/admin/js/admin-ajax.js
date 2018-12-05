@@ -1,19 +1,19 @@
 $(document).ready(function(){
 
-    $('#crear-admin').on('submit', function(e){
+    $('#guardar-registro').on('submit', function(e){
         e.preventDefault();
         var datos = $(this).serializeArray();
 
         $.ajax({
             type: $(this).attr('method'), // POST
             data: datos,
-            url:  $(this).attr('action'), // // va a insertar-admin.php
+            url:  $(this).attr('action'), // // va a modelo-admin.php
             datatype: 'json',
             success: function(data){
                 var resultado = JSON.parse(data);
                 console.log(resultado);
 
-                if(resultado.respuesta == "exito"){
+                if(resultado.respuesta == "correcto"){
                     swal({
                         position: 'center',
                         type: 'success',
@@ -22,12 +22,14 @@ $(document).ready(function(){
                         timer: 3000
                       });
                       //borrar datos del formulario
-                      $("#crear-admin").trigger("reset");
+                      //   if(resultado.id_actualizado == 0){
+                        $("#crear-admin").trigger("reset");
+                      // };
                 } else {
                     swal({
                         position: 'center',
                         type: 'error',
-                        title: 'No se pudo generar el nuevo administrador. Revise los datos ingresades',
+                        title: 'No se pudo guardar el nuevo administrador. Revise los datos ingresados',
                         showConfirmButton: false,
                         timer: 3000
                       })
@@ -37,7 +39,7 @@ $(document).ready(function(){
         });
     });
 
-    var resultado;
+
     $('#login-admin').on('submit', function(e){
         e.preventDefault();
         var datos = $(this).serializeArray();
@@ -47,7 +49,7 @@ $(document).ready(function(){
             url:  $(this).attr('action'), // va a insertar-admin.php
             datatype: 'json',
             success: function(data){
-                resultado = JSON.parse(data);
+                var resultado = JSON.parse(data);
                 if(resultado.respuesta == "exitoso"){
                     swal({
                         position: 'center',
