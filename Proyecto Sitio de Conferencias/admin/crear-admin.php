@@ -50,10 +50,15 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu password">
               </div>
+              <div class="form-group">
+                <label for="password">Repetir Password</label>
+                <input type="password" class="form-control" id="repetir_password" name="repetir_password" placeholder="Vuelve a ingresa tu password">
+                <span id="resultado_password" class="help-block"></span>
+              </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" >Agregar</button>
+                <button type="submit" class="btn btn-primary" id="crear-registro">Agregar</button>
             </div>
           </form>
         </div><!-- /.box -->

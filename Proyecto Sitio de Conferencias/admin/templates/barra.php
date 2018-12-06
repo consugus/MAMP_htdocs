@@ -23,14 +23,14 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
               <img src="img/FotoCenaEgresadoSeba.jpg" class="img-circle" alt="User Image" style="height: 20px";>
-              <span class="hidden-xs">Hola: Admin</span>
+              <span class="hidden-xs">Hola: <?php echo $_SESSION['nombre'];?></span>
             </a>
 
             <ul class="dropdown-menu">
 
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-success btn-flat">Ajustes</a>
+                  <a href="editar-admin.php?id=<?php echo $_SESSION['id'];?>" class="btn btn-success btn-flat">Ajustes</a>
                 </div>
                 <div class="pull-right">
                   <a href="login.php?cerrar_sesion=true" class="btn btn-success btn-flat">Cerrar sesión</a>

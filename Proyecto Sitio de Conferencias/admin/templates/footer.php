@@ -225,8 +225,9 @@
 <script src="js/dataTables.bootstrap.min.js"></script>
 <!-- jquery.slimscroll.min.js -->
 <script src="js/jquery.slimscroll.min.js"></script>
-
+<!-- app.js -->
 <script src="js/app.js"></script>
-
+<!-- app.js -->
+<script src="js/login-ajax.js"></script>
 </body>
 </html>

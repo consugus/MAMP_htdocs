@@ -3,7 +3,7 @@ $(document).ready(function () {
     // $('#registros').DataTable();
     $('#registros').DataTable({
       'paging'      : true,
-      'pageLength'  : 10,
+      'pageLength'  : 3,
       'lengthChange': false,
       'searching'   : true,
       'ordering'    : true,
@@ -22,4 +22,24 @@ $(document).ready(function () {
         search      : 'Buscar'
       }
   });
+
+  $('#crear-registro').attr("disabled", true);
+  $('#repetir_password').on('input',function(){
+
+    var password_nuevo = $('#password').val();
+    // console.log("¿Son iguales?: " + ($(this).val() == password_nuevo) );
+
+    if($(this).val() == password_nuevo){
+      $('#resultado_password').text('Correcto');
+      $('#resultado_password').parents('.form-group').addClass('has-success').removeClass('has-error');
+      $('input#password').parents('.form-group').addClass('has-success').removeClass('has-error');
+      $('#crear-registro').attr("disabled", false);
+    } else{
+      $('#resultado_password').text('No son iguales!');
+      $('#resultado_password').parents('.form-group').addClass('has-error').removeClass('has-success');
+      $('input#password').parents('.form-group').addClass('has-error').removeClass('has-success');
+    };
+  });
+
+
 });

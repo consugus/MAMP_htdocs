@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    // guardar un registro de administrador
     $('#guardar-registro').on('submit', function(e){
         e.preventDefault();
         var datos = $(this).serializeArray();
@@ -11,7 +12,6 @@ $(document).ready(function(){
             datatype: 'json',
             success: function(data){
                 var resultado = JSON.parse(data);
-                console.log(resultado);
 
                 if(resultado.respuesta == "correcto"){
                     swal({
@@ -22,9 +22,7 @@ $(document).ready(function(){
                         timer: 3000
                       });
                       //borrar datos del formulario
-                      //   if(resultado.id_actualizado == 0){
-                        $("#crear-admin").trigger("reset");
-                      // };
+                        $(this).trigger("reset"); // "#guardar-registro"
                 } else {
                     swal({
                         position: 'center',
@@ -37,40 +35,54 @@ $(document).ready(function(){
 
             }
         });
-    });
+    }); // end guardar de un registro de administrador
 
 
-    $('#login-admin').on('submit', function(e){
+    // eliminar un registro de administrador
+    $('.borrar-registro').on('click', function(e){
         e.preventDefault();
-        var datos = $(this).serializeArray();
-        $.ajax({
-            type: $(this).attr('method'), // POST
-            data: datos,
-            url:  $(this).attr('action'), // va a modelo-admin.php
-            datatype: 'json',
-            success: function(data){
-                var resultado = JSON.parse(data);
-                if(resultado.respuesta == "exitoso"){
-                    swal({
-                        position: 'center',
-                        type: 'success',
-                        title: 'Bienvenido/a, ' + resultado.nombreAdmin,
-                        showConfirmButton: false,
-                        timer: 2000
-                      });
-                        setTimeout(function(){
-                            window.location.href = "admin-area.php";
-                        }, 3000);
-                } else {
-                swal({
-                    position: 'center',
-                    type: 'error',
-                    title: 'Usuario o password incorrectos',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })};
+        var id = $(this).attr('data-id');
+        var tipo = $(this).attr('data-tipo');
+
+
+        Swal({
+            title: 'Está Ud seguro/a?',
+            text: "La eliminación de un administrador no puede revertirse!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminarlo!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    type    : 'post',
+                    data    : {  'id'       : id,
+                                 'registro' : 'eliminar' },
+                    url     : 'modelo-'+ tipo +'.php',
+                    success : function(data){
+                        var resultado = JSON.parse(data);
+                        if(resultado.respuesta == "exito"){
+                            Swal(
+                                'Eliminado!',
+                                'El administrador se ha eliminado.',
+                                'success'
+                              )
+                              jQuery('[data-id="' +  resultado.id_eliminado + '"]').parents('TR').remove();
+                        } else {
+                            Swal({
+                                type: 'error',
+                                title: 'Error...',
+                                text: 'El administrador seleccionado no se pudo eliminar!'
+                              })
+                        }; // end if
+                    }
+                }); // end ajax
             }
-        });
-    });
+          }) // end promise (.then)
+    }); // end eliminación de un registro de administrador
+
 }); // end $(document).ready()
 

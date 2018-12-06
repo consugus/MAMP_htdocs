@@ -41,8 +41,6 @@ if( isset($_POST['registro']) && $_POST['registro'] == "nuevo" ){
 };// end agregar-admin
 
 
-
-
 // editar-admin
 if(isset($_POST['registro']) && $_POST['registro'] == "actualizar" ){
     try {
@@ -72,54 +70,37 @@ if(isset($_POST['registro']) && $_POST['registro'] == "actualizar" ){
         );
     }
     die(json_encode($respuesta));
-};// end editar-admin
+}; // end editar-admin
 
 
-
-
-// loggin
-if(isset($_POST['log-admin'] ) &&(int)$_POST['log-admin'] == 1 ){
-    $usuario = htmlentities($_POST['usuario'], ENT_QUOTES, 'UTF-8');
-    $password = $_POST['password'];
-
+// eliminación de un registro
+if(isset($_POST['registro']) && $_POST['registro'] == "eliminar" ){
+    // die(json_encode($_POST));
+    $id_borrar = $_POST['id'];
     try {
-        require_once "../includes/funciones/dbconnection.php";
-        $stmt = $conn->prepare("SELECT * FROM administradores WHERE adminUsuario = ?; " );
-        $stmt->bind_param( "s", $usuario);
+        $stmt = $conn->prepare("DELETE FROM administradores WHERE adminId = ? ");
+        $stmt->bind_param("i", $id_borrar);
         $stmt->execute();
-
-        $stmt->bind_result($idAdmin, $usuarioAdmin, $nombreAdmin, $passwordAdmin, $editado);
         if($stmt->affected_rows){
-            $existe = $stmt->fetch();
-            if($existe){
-                if(password_verify($password, $passwordAdmin)){
-                    session_start();
-                    $_SESSION['usuario'] = $usuarioAdmin;
-                    $_SESSION['nombre'] = $nombreAdmin;
-
-                    $respuesta = array(
-                        'respuesta' => 'exitoso',
-                        'nombreAdmin' => $nombreAdmin );
-                }else{
-                    $respuesta = array(
-                        'respuesta' => 'error' ); // error de password
-                }
-            } else{
-                $respuesta = array(
-                    'respuesta' => 'error' ); // usuario inexistente
-            };
+            $respuesta = array(
+                'respuesta' => 'exito',
+                'id_eliminado' => $id_borrar
+            );
+        } else{
+            $respuesta = array(
+                'respuesta' => 'error' // hubo algún problema al eliminar
+            );
         };
         $stmt->close();
         $conn->close();
-
     } catch (Exception $e) {
         $respuesta = array(
-            'respuesta' => $e->getMessage()
+            'respuesta'=>$e->getMessage()
         );
     }
-
     die(json_encode($respuesta));
-};// end login-admin
+}; // end eliminación de un registro
+
 
 
 

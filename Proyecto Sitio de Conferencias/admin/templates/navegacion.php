@@ -9,7 +9,7 @@
           <img src="img/FotoCenaEgresadoSeba.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="info">
-          <p>Gustavo Ríos</p>
+          <p><?php echo $_SESSION['nombre']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -86,16 +86,24 @@
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Administradores</span>
-          </a>
-          <ul class="treeview-menu">
-          <li><a href="lista-admin.php"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="crear-admin.php"><i class="fa fa-plus-circle"></i> Agregar administrador</a></li>
-          </ul>
-        </li>
+
+        <?php
+            if($_SESSION['nivel'] == 1){ ?>
+
+                <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Administradores</span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="lista-admin.php"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
+                    <li><a href="crear-admin.php"><i class="fa fa-plus-circle"></i> Agregar administrador</a></li>
+                  </ul>
+                </li>
+
+        <?php }; ?>
+
+
 
         <li class="treeview">
           <a href="#">
