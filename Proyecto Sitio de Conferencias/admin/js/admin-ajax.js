@@ -46,7 +46,7 @@ $(document).ready(function(){
         $.ajax({
             type: $(this).attr('method'), // POST
             data: datos,
-            url:  $(this).attr('action'), // va a insertar-admin.php
+            url:  $(this).attr('action'), // va a modelo-admin.php
             datatype: 'json',
             success: function(data){
                 var resultado = JSON.parse(data);

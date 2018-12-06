@@ -77,8 +77,8 @@ if(isset($_POST['registro']) && $_POST['registro'] == "actualizar" ){
 
 
 
-
-if(isset($_POST['registro'] ) &&(int)$_POST['log-admin'] == 1 ){
+// loggin
+if(isset($_POST['log-admin'] ) &&(int)$_POST['log-admin'] == 1 ){
     $usuario = htmlentities($_POST['usuario'], ENT_QUOTES, 'UTF-8');
     $password = $_POST['password'];
 
