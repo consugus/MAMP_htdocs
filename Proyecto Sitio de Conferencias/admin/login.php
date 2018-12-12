@@ -19,7 +19,7 @@
       <p class="login-box-msg">Iniciar sesión</p>
       <form name="login-admin-form" id="login-admin" method="post" action="login-admin.php">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+          <input type="text" class="form-control" name="usuario" placeholder="Usuario" autofocus>
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

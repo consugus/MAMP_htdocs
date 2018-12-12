@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // guardar un registro de administrador
+    // guardar un registro
     $('#guardar-registro').on('submit', function(e){
         e.preventDefault();
         var datos = $(this).serializeArray();
@@ -8,11 +8,12 @@ $(document).ready(function(){
         $.ajax({
             type: $(this).attr('method'), // POST
             data: datos,
-            url:  $(this).attr('action'), // // va a modelo-admin.php
+            url:  $(this).attr('action'), // // va a modelo-evento.php
             datatype: 'json',
             success: function(data){
+                // console.log( JSON.parse(data) );
                 var resultado = JSON.parse(data);
-
+                console.log(resultado);
                 if(resultado.respuesta == "correcto"){
                     swal({
                         position: 'center',
@@ -27,7 +28,7 @@ $(document).ready(function(){
                     swal({
                         position: 'center',
                         type: 'error',
-                        title: 'No se pudo guardar el nuevo administrador. Revise los datos ingresados',
+                        title: 'No se pudo guardar el nuevo registro. Revise los datos ingresados',
                         showConfirmButton: false,
                         timer: 3000
                       })
@@ -35,10 +36,10 @@ $(document).ready(function(){
 
             }
         });
-    }); // end guardar de un registro de administrador
+    }); // end guardar un registro
 
 
-    // eliminar un registro de administrador
+    // eliminar un registro
     $('.borrar-registro').on('click', function(e){
         e.preventDefault();
         var id = $(this).attr('data-id');
@@ -47,7 +48,7 @@ $(document).ready(function(){
 
         Swal({
             title: 'Está Ud seguro/a?',
-            text: "La eliminación de un administrador no puede revertirse!",
+            text: "La eliminación de un registro no puede revertirse!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -67,7 +68,7 @@ $(document).ready(function(){
                         if(resultado.respuesta == "exito"){
                             Swal(
                                 'Eliminado!',
-                                'El administrador se ha eliminado.',
+                                'El registro se ha eliminado.',
                                 'success'
                               )
                               jQuery('[data-id="' +  resultado.id_eliminado + '"]').parents('TR').remove();
@@ -75,14 +76,14 @@ $(document).ready(function(){
                             Swal({
                                 type: 'error',
                                 title: 'Error...',
-                                text: 'El administrador seleccionado no se pudo eliminar!'
+                                text: 'El registro seleccionado no se pudo eliminar!'
                               })
                         }; // end if
                     }
                 }); // end ajax
             }
           }) // end promise (.then)
-    }); // end eliminación de un registro de administrador
+    }); // end eliminación de un registro
 
 }); // end $(document).ready()
 

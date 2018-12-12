@@ -32,7 +32,6 @@
 
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Quick Example</h3>
           </div>
           <!-- /.box-header -->
           <!-- form start -->
@@ -58,7 +57,7 @@
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="crear-registro">Agregar</button>
+                <button type="submit" class="btn btn-primary" id="crear-registro-admin">Agregar</button>
             </div>
           </form>
         </div><!-- /.box -->

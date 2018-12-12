@@ -45,8 +45,8 @@
             <span>Eventos</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
+            <li><a href="lista-eventos.php"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
+            <li><a href="crear-evento.php"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
           </ul>
         </li>
 
@@ -57,10 +57,7 @@
           </a>
           <ul class="treeview-menu">
           <li><a href="#"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
-            <!-- <li><a href="#"><i class="fa fa-university"></i> Seminarios</a></li> -->
-            <!-- <li><a href="#"><i class="fa fa-comment"></i> Conferencias</a></li>
-            <li><a href="#"><i class="fa fa-code"></i> Talleres</a></li> -->
+            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar una categoría de evento</a></li>
           </ul>
         </li>
 
@@ -71,7 +68,7 @@
           </a>
           <ul class="treeview-menu">
           <li><a href="#"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
+            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar invitado</a></li>
           </ul>
         </li>
 
@@ -82,7 +79,7 @@
           </a>
           <ul class="treeview-menu">
           <li><a href="#"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
+            <li><a href="#"><i class="fa fa-plus-circle"></i> Nuevo registrado</a></li>
           </ul>
         </li>
 
@@ -112,7 +109,7 @@
           </a>
           <ul class="treeview-menu">
           <li><a href="#"><i class="fa fa-list-ul"></i> Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar evento</a></li>
+            <li><a href="#"><i class="fa fa-plus-circle"></i> Agregar testimonial</a></li>
           </ul>
         </li>
 
