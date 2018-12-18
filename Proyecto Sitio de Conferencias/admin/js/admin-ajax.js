@@ -8,17 +8,16 @@ $(document).ready(function(){
         $.ajax({
             type: $(this).attr('method'), // POST
             data: datos,
-            url:  $(this).attr('action'), // // va a modelo-evento.php
+            url:  $(this).attr('action'), // // va a modelo-categoria.php
             datatype: 'json',
             success: function(data){
-                // console.log( JSON.parse(data) );
                 var resultado = JSON.parse(data);
                 console.log(resultado);
-                if(resultado.respuesta == "correcto"){
+                if(resultado.respuesta == "exito"){
                     swal({
                         position: 'center',
                         type: 'success',
-                        title: 'El administrador se guardó exitosamente',
+                        title: 'El registro se guardó exitosamente',
                         showConfirmButton: false,
                         timer: 3000
                       });

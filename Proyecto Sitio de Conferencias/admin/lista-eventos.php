@@ -42,7 +42,7 @@
                     <?php
                         try {
                             $sql = "SELECT   e.evento_id AS eventoId, ";
-		                    $sql .=         "e.nombre_evento, ";
+		                        $sql .=         "e.nombre_evento, ";
                             $sql .=         "e.fecha_evento, ";
                             $sql .=         "e.hora_evento, ";
                             $sql .=         "ce.cat_evento AS categoria, ";
@@ -55,21 +55,22 @@
                         } catch (Exception $e) {
                           echo $e->getMessage();
                         }
-                        $eventos = $resultado->fetch_assoc();
+                        //$eventos = $resultado->fetch_assoc();
                         // echo "<pre>";
                         //     var_dump( ($eventos) );
                         // echo "</pre>";
                         while($eventos = $resultado->fetch_assoc()){ ?>
                           <tr>
                             <td><?php  echo $eventos['nombre_evento'] ?></td>
-                            <td><?php  echo $eventos['fecha_evento'] ?></td>
-                            <td><?php  echo $eventos['hora_evento'] ?></td>
+                            <td><?php  echo date('d-m-Y', strtotime($eventos['fecha_evento']) ) ?></td>
+                            <td><?php  echo date('h:i a', $eventos['hora_evento']) ?></td>
                             <td><?php  echo $eventos['categoria'] ?></td>
                             <td><?php  echo $eventos['nom_ape'] ?></td>
                             <td>
-                              <a href="editar-evento.php?id=<?php  echo $evento['eventoId']; ?>" class="btn bg-orange btn-flat margin"> <i class="fa fa-pencil"></i>
+                              <a href="editar-evento.php?id=<?php  echo $eventos['eventoId']; ?>" class="btn bg-orange btn-flat margin"> <i class="fas fa-pencil-alt"></i></a>
                               <a href="#" data-id=<?php  echo $evento['eventoId']; ?> data-tipo="evento" class="btn bg-maroon btn-flat margin borrar-registro" > <i class="fa fa-trash"></i>
                               </a>
+                            </td>
                           </tr>
 
                         <?php  } ?>

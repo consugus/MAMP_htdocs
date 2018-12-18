@@ -1,4 +1,10 @@
 <?php
+        // Si el id no es válido muestra un mensaje de error. Caso contrario se muestra el formulario de edición
+        $id = $_GET['id'];
+        if(!filter_var($id, FILTER_VALIDATE_INT) ){
+          die('Error');
+        } else{
+
     // La llamada a las funciones de control de sesióin se hace en cada página que necesite protección,
     // al principio de cualquier otro código de la página
     include_once "funciones/sesiones.php";
@@ -6,6 +12,7 @@
     include_once "funciones/funciones.php";
     include_once "templates/barra.php";
     include_once "templates/navegacion.php";
+
 ?>
 
   <!-- bootstrap datepicker -->
@@ -20,8 +27,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Formulario para la creación de nuevos eventos
-        <small>Llena el formulario para crear un evento</small>
+        Formulario para la edición de  eventos
+        <small>Llena el formulario para editar un evento</small>
       </h1>
     </section>
 
@@ -34,7 +41,7 @@
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Crear evento</h3>
+      <h3 class="box-title">Editar evento</h3>
       <div class="box-body">
 
         <div class="box box-primary">
@@ -46,26 +53,46 @@
 
             <div class="box-body">
 
+              <?php
+
+                  $sql = "SELECT * FROM eventos WHERE evento_id = $id ";
+                  $resultado = $conn->query($sql);
+                  $evento = $resultado->fetch_assoc();
+
+              ?>
+
               <div class="form-group">
                 <label for="nombre_evento">Nombre del evento: </label>
-                <input type="text" class="form-control" id="nombre_evento" name="nombre_evento" placeholder="Ingresa el nombre del evento">
+                <input type="text" class="form-control" id="nombre_evento" name="nombre_evento" placeholder="Ingresa el nombre del evento" value="<?php echo $evento['nombre_evento']; ?>" ?>
               </div><!-- Nombre del evento -->
+
+
 
               <div class="form-group">
                 <label for="nombre_evento">Categoría del evento: </label>
-                <select name="categoria_evento" class="form-control select2" id="">
-                  <option value="0"> - Seleccione - </option>
+                <select name="categoria_evento" class="form-control select2" id="categoria_evento">
+                  <option> - Seleccione - </option>
                   <?php //Select a la BD
                       try {
+                        $categoria_actual = $evento['id_cat_evento'];
                         $sql = "SELECT * FROM categoria_evento";
                         $resultado = $conn->query($sql);
-                        while($cat_evento = $resultado->fetch_assoc()){ ?>
+                        while($cat_evento = $resultado->fetch_assoc()){
 
-                          <option value="<?php echo $cat_evento['id_categoria']; ?>">
-                              <?php echo $cat_evento['cat_evento']; ?>
-                          </option>
+                            if( $cat_evento['id_categoria'] == $categoria_actual){ ?>
 
-                        <?php };// End Select a la BD
+                                  <option value="<?php echo $cat_evento['id_categoria']; ?>" selected >
+                                      <?php echo $cat_evento['cat_evento']; ?>
+                                  </option>
+                            <?php
+                            } else { ?>
+
+                                  <option value="<?php echo $cat_evento['id_categoria']; ?>">
+                                      <?php echo $cat_evento['cat_evento']; ?>
+                                  </option>
+                            <?php
+                            }; // end if
+                        };// End while
 
                       } catch (Exception $e) {
                         echo "Error: ". $e->getMessage();
@@ -76,41 +103,66 @@
 
               <div class="form-group">
                 <label for="fecha_evento">Fecha del evento: </label>
+
+                      <?php
+                          $fecha = $evento['fecha_evento'];
+                          $fecha = date('m/d/Y', strtotime($fecha) );
+                      ?>
+
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="fecha_evento">
+                  <input type="text" class="form-control pull-right" id="fecha_evento" name="fecha_evento" value=<?php echo $fecha ?>>
                 </div><!-- /.input group -->
               </div><!-- Fecha del evento -->
 
               <div class="bootstrap-timepicker">
                 <div class="form-group">
-                  <label for="hora_evento">Hora del evento:</label>
+                  <label>Hora del evento:</label>
+
+                      <?php
+                          $hora = $evento['hora_evento'];
+                          $hora = date( 'H:i', strtotime($hora) );
+                      ?>
+
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-clock-o"></i>
                     </div>
-                    <input type="text" class="form-control timepicker" id="hora_evento" name="hora_evento">
+                    <input type="text" class="form-control timepicker" id="hora_evento" name="hora_evento" value=<?php echo $hora ?>>
                   </div><!-- /.input group -->
                 </div><!-- /.form group -->
               </div><!-- Hora del evento -->
 
               <div class="form-group">
+
+
+
                 <label for="nombre_evento">Invitado o Expositor: </label>
-                <select name="invitado" class="form-control select2" id="">
+                <select name="invitado" class="form-control select2" id="invitado">
                   <option value="0"> - Seleccione - </option>
                   <?php //Select a la BD
                       try {
+                        $invitado_actual = $evento['id_invitado'];
                         $sql = "SELECT invitado_id as id, concat(apellido, ', ', nombre) as ape_nom FROM invitados  ORDER BY ape_nom";
                         $resultado = $conn->query($sql);
-                        while($invitado = $resultado->fetch_assoc()){ ?>
+                        while($invitado = $resultado->fetch_assoc()){
 
-                          <option value="<?php echo $invitado['id']; ?>">
-                              <?php echo $invitado['ape_nom']; ?>
-                          </option>
+                            if($invitado['id'] == $invitado_actual){ ?>
+                                <option value="<?php echo $invitado['id']; ?>" selected>
+                                    <?php echo $invitado['ape_nom']; ?>
+                                </option>
+                            <?php
+                            } else{ ?>
 
-                        <?php };// End Select a la BD
+                                <option value="<?php echo $invitado['id']; ?>">
+                                    <?php echo $invitado['ape_nom']; ?>
+                                </option>
+
+                            <?php
+                            }; // end if
+                        };// End while
 
                       } catch (Exception $e) {
                         echo "Error: ". $e->getMessage();
@@ -123,8 +175,9 @@
 
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="crear-registro">Agregar</button>
+                <input type="hidden" name="registro" value="actualizar">
+                <input type="hidden" name="id_registro" value="<?php echo $id ?>">
+                <button type="submit" class="btn btn-primary" id="crear-registro">Guardar</button>
             </div>
           </form>
         </div><!-- /.box -->
@@ -143,7 +196,8 @@
 <!-- /.content-wrapper -->
 
 <?php
-    include_once "templates/footer.php";
+      include_once "templates/footer.php";
+    };
 ?>
 
 <!-- bootstrap datepicker -->
@@ -155,16 +209,16 @@
 
 <script>
     $(function () {
-        $('#datepicker').datepicker({
+        $('#fecha_evento').datepicker({
           autoclose: true
         });
 
-        $('.timepicker').timepicker({
+        $('#hora_evento').timepicker({
           showInputs: false
         })
 
         //Initialize Select2 Elements
-        $('.select2').select2()
+        $('#invitado').select2()
 
     });
 </script>

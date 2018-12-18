@@ -3,7 +3,7 @@ $(document).ready(function () {
     // $('#registros').DataTable();
     $('#registros').DataTable({
       'paging'      : true,
-      'pageLength'  : 3,
+      'pageLength'  : 5,
       'lengthChange': false,
       'searching'   : true,
       'ordering'    : true,
@@ -40,6 +40,8 @@ $(document).ready(function () {
       $('input#password').parents('.form-group').addClass('has-error').removeClass('has-success');
     };
   });
+
+
 
 
 });
