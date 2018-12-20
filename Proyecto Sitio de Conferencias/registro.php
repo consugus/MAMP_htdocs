@@ -83,6 +83,40 @@
         <div id="eventos" class="eventos clearfix">
           <h3>Elige tus talleres</h3>
           <div class="caja">
+            <?php
+                try {
+                    require_once("includes/funciones/dbconnection.php");
+                    $sql = "SELECT e.*, ce.cat_evento, i.nombre, i.apellido FROM eventos e
+                              JOIN categoria_evento ce ON e.id_cat_evento = ce.id_categoria
+                              JOIN invitados i ON e.id_invitado = i.invitado_id
+                          ORDER BY e.fecha_evento, e.id_cat_evento, e.hora_evento";
+
+                  $resultado = $conn->query($sql);
+                } catch (Exception $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                $eventos_dia = array();
+                while($eventos = $resultado->fetch_assoc()){
+                    $fecha = $eventos['fecha_evento'];
+                    setlocale(LC_ALL, 'es_ES');
+                    $dia_semana = strftime("%A", strtotime($fecha));
+                    $dia = array(
+                      'nombre_evento' => $eventos['nombre_evento'],
+                      'hora' => $eventos['hora_evento'],
+                      'id' => $eventos['evento_id'],
+                      'nombre_invitado' => $eventos['nombre'],
+                      'apellido_invitado' => $eventos['apellido']
+                    );
+                    $eventos_dia[$dia_semana]['eventos'][$eventos['cat_evento']][] = $dia;
+                };
+                echo "<pre>";
+                var_dump($eventos_dia);
+              echo "</pre>";
+
+            ?>
+
+
+
             <div id="viernes" class="contenido-dia clearfix">
               <h4>Viernes</h4>
               <div>
