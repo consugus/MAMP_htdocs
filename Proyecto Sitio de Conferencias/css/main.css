@@ -1028,6 +1028,13 @@ form.registro .contenido-dia time {
   font-weight: bold;
 }
 
+.contenido-dia .autor{
+  font-weight: bold;
+  font-size: 18px;
+  font-family: arial, helvetica;
+  text-transform: uppercase;
+}
+
 /* Resumen Registro */
 div.resumen p {
   font-size: 1.2em;

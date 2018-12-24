@@ -115,6 +115,7 @@
     ?>
 
     <script src="js/main.js"></script>
+    <script src="js/cotizador.js"></script>
     <script src="js/extraFunctionsAnno.js"></script>
 
 

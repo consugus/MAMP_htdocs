@@ -227,6 +227,8 @@
 <script src="js/jquery.slimscroll.min.js"></script>
 <!-- app.js -->
 <script src="js/app.js"></script>
+<!-- cotizador.js -->
+<script src="../js/cotizador.js"></script>
 <!-- app.js -->
 <script src="js/login-ajax.js"></script>
 </body>

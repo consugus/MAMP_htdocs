@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <!-- fontawesome-iconpicker -->
   <link rel="stylesheet" href="css/fontawesome-iconpicker.min.css">
+  <!-- fontawesome-iconpicker -->
+  <link rel="stylesheet" href="css/icheck.css">
 
 
 
@@ -49,29 +51,202 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form" name="guardar-registro" id="guardar-registro" method="post" action="modelo-categoria.php">
+          <form role="form" name="guardar-registro" id="guardar-registro" method="post" action="modelo-registrado.php">
 
             <div class="box-body">
 
               <div class="form-group">
-                <label for="nombre_categoria">Nombre de la categoría: </label>
-                <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" placeholder="Ingresa el nombre de la categoría">
+                <label for="nombre_registrado">Nombre : </label>
+                <input type="text" class="form-control" id="nombre" name="nombre_registrado" placeholder="Nombre">
               </div><!-- Nombre de la categoría -->
 
               <div class="form-group">
-                <label for="">Icono: </label>
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-address-book"></i>
-                  </div>
-                  <input type="text" id="icono" name="icono" placeholder="fa-icon" class="form-control pull-right" data-placement="bottomRight"><!-- form-control icp icp-auto iconpicker-element iconpicker-input -->
+                <label for="apellido_registrado">Apellido : </label>
+                <input type="text" class="form-control" id="apellido" name="apellido_registrado" placeholder="Apellido">
+              </div><!-- Nombre de la categoría -->
+
+              <div class="form-group">
+                <label for="email_registrado">Email : </label>
+                <input type="email" class="form-control" id="eMail" name="email_registrado" placeholder="Email">
+              </div><!-- Nombre de la categoría -->
+
+              <div class="form-group">
+                <div id="paquetes" class="paquetes">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Elige el número de boletos</h3>
                 </div>
-              </div><!-- Icono -->
+                  <ul class="lista-precios clearfix row">
+                    <li class="col-md-4">
+                      <div class="tabla-precios text-center">
+                        <h3>Pase por día (Viernes)</h3>
+                        <p class="numero">$30</p>
+                        <ul>
+                          <li>Bocadillos gratis</li>
+                          <li>Todas las conferencias</li>
+                          <li>Todos los talleres</li>
+                        </ul>
+                        <div class="orden">
+                          <label for="pase_dia">Boletos deseados</label>
+                          <input type="number" class="form-contol" id="pase_dia" min="0" size="3" name="boletos[un_dia][cantidad]" placeholder="0">
+                          <input type="hidden" value="30" name="boletos[un_dia][precio]">
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="col-md-4">
+                      <div class="tabla-precios text-center">
+                        <h3>Todos los días</h3>
+                        <p class="numero">$50</p>
+                        <ul>
+                          <li>Bocadillos gratis</li>
+                          <li>Todas las conferencias</li>
+                          <li>Todos los talleres</li>
+                        </ul>
+                        <div class="orden">
+                          <label for="pase_completo">Boletos deseados</label>
+                          <input type="number" class="form-contol" id="pase_completo" min="0" size="3" name="boletos[completo][cantidad]" placeholder="0">
+                          <input type="hidden" value="50" name="boletos[completo][precio]">
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="col-md-4">
+                      <div class="tabla-precios text-center">
+                        <h3>Pase por dos días (Viernes y Sábado)</h3>
+                        <p class="numero">$45</p>
+                        <ul>
+                          <li>Bocadillos gratis</li>
+                          <li>Todas las conferencias</li>
+                          <li>Todos los talleres</li>
+                        </ul>
+                        <div class="orden">
+                          <label for="pase_dosdias">Boletos deseados</label>
+                          <input type="number" class="form-contol" id="pase_dos_dias" min="0" size="3" name="boletos[dos_dias][cantidad]" placeholder="0">
+                          <input type="hidden" value="45" name="boletos[dos_dia][precio]">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- fin paquetes -->
+              </div><!-- end form-group paquetes -->
+
+              <div class="form-group">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Elige los talleres</h3>
+                </div>
+                  <div id="eventos" class="eventos clearfix">
+                    <div class="caja ">
+                      <?php
+                          try {
+                              //require_once("includes/funciones/dbconnection.php");
+                              $sql = "SELECT e.*, ce.cat_evento, i.nombre, i.apellido FROM eventos e
+                                        JOIN categoria_evento ce ON e.id_cat_evento = ce.id_categoria
+                                        JOIN invitados i ON e.id_invitado = i.invitado_id
+                                    ORDER BY e.fecha_evento, e.id_cat_evento, e.hora_evento";
+
+                            $resultado = $conn->query($sql);
+                          } catch (Exception $e) {
+                              echo "Error: " . $e->getMessage();
+                          }
+                          $eventos_dia = array();
+                          while($eventos = $resultado->fetch_assoc()){
+                              $fecha = $eventos['fecha_evento'];
+                              setlocale(LC_ALL, 'es_ES');
+                              $dia_semana = strftime("%A", strtotime($fecha));
+                              $dia = array(
+                                'nombre_evento' => $eventos['nombre_evento'],
+                                'hora' => $eventos['hora_evento'],
+                                'id' => $eventos['evento_id'],
+                                'nombre_invitado' => $eventos['nombre'],
+                                'apellido_invitado' => $eventos['apellido']
+                              );
+                              $eventos_dia[$dia_semana]['eventos'][$eventos['cat_evento']][] = $dia;
+                          }; ?>
+
+                        <?php foreach ($eventos_dia as $dia => $eventos) { ?>
+                          <div id="<?php echo str_replace('á', 'a', $dia); ?>" class="contenido-dia clearfix row">
+                            <h4 class="text-center nombre_dia"><?php echo $dia ?></h4>
+                            <?php foreach ($eventos['eventos'] as $tipo => $evento_dia): ?>
+                                <div class="col-md-4">
+                                    <p><?php echo $tipo ?>:</p>
+                                    <?php foreach ($evento_dia as $evento): ?>
+                                        <label>
+                                            <input type="checkbox" class="flat-red" name="registro[]" id="<?php echo $evento['id']; ?>" value="<?php echo $evento['id']; ?>">
+                                            <time><?php echo date( 'H:i', strtotime($evento['hora']) ); ?></time> <?php echo $evento['nombre_evento']; ?>
+                                            <br>
+                                            <span class="autor"><?php echo $evento['nombre_invitado'] . " " . $evento['apellido_invitado'];  ?></span>
+                                        </label>
+                                    <?php endforeach; ?><!-- end foreach event -->
+                                </div>
+                            <?php  endforeach;?><!-- end foreach eventos_dia -->
+                          </div><!--.contenido_dia-->
+                        <?php }; ?><!-- end foreach eventos -->
+                    </div><!--.caja-->
+                  </div><!--#eventos-->
+
+              </div><!-- end form-group talleres -->
+
+
+              <div id="resumen" class="resumen clearfix">
+              <div class="box-header with-border">
+                  <h3 class="box-title">Pago y extras</h3>
+              </div>
+              <br>
+                <div class="caja clearfix row">
+                  <div class="extras col-md-6">
+                    <div class="orden">
+                      <label for="camisa_evento">Camisa del evento $10
+                        <small>(promoción 7% de dto)</small>
+                      </label>
+                      <br>
+                      <input type="number" min="0" class="form-control" id="camisa_evento" name="pedido_extra[camisas][cantidad]" placeholder="0">
+                      <input type="hidden" value="10" name="pedido_extra[camisas][precio]">
+                    </div> <!-- orden -->
+                    <div class="orden">
+                      <label for="etiquetas">Paquete de 10 etiquetas $2
+                        <small>(HTML5, CSS3, JavaScript, Chrome, Google)</small>
+                      </label>
+                      <br>
+                      <input type="number" min="0"  class="form-control" name="pedido_extra[etiquetas][cantidad]" size="3" id="etiquetas" placeholder="0">
+                      <input type="hidden" value="2" name="pedido_extra[etiquetas][precio]">
+                    </div><!-- orden -->
+                    <div class="orden">
+                      <label for="regalo">Seleccione un regalo</label>
+                      <br>
+                      <select name="regalo" name="regalo" id="regalo" required class="form-control seleccionar">
+                        <option value="">- Seleccione un regalo -</option>
+                        <option value="2">Etiquetas</option>
+                        <option value="1">Pulsera</option>
+                        <option value="3">Pluma</option>
+                      </select>
+                    </div><!-- orden -->
+                    <br>
+                    <div id="boxCalcular">
+                      <input type="button" id="calcular" class="btn btn-success" value="Calcular">
+                    </div>
+                  </div><!-- extras -->
+
+                  <div class="extras col-md-6">
+                    <div class="total">
+                      <p>Resumen:</p>
+                      <div id="lista-productos"> </div>
+                      <div>
+                        <p>Total:</p>
+                        <div id="suma-total"> </div>
+                        <input type="hidden" name="total_pedido" id="total_pedido">
+                        <!-- <input type="submit" id="btnRegistro" name="submit" class="button" value="Pagar" > -->
+                      </div>
+                    </div><!-- total -->
+                  </div><!-- extras -->
+                </div><!-- caja -->
+              </div><!-- resumen -->
+
+
 
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <input type="hidden" name="registro" value="nuevo">
-                <button type="submit" class="btn btn-primary" id="crear-registro">Agregar</button>
+                <button type="submit" class="btn btn-primary" id="btnRegistro" >Agregar</button> <!-- id="crear-registro" -->
             </div>
           </form>
         </div><!-- /.box -->
@@ -101,6 +276,8 @@
 <script src="js/select2.full.min.js"></script>
 <!-- fontawesome-iconpicker -->
 <script src="js/fontawesome-iconpicker.min.js"></script>
+<!-- fontawesome-iconpicker -->
+<script src="js/icheck.min.js"></script>
 
 <script>
     $(function() {
@@ -117,8 +294,16 @@
 
         $('#icono').iconpicker();
 
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+          checkboxClass: 'icheckbox_flat-blue',
+          radioClass   : 'iradio_flat-blue'
+        })
+
     });
 </script>
+
+
 
 
 
