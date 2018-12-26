@@ -2,24 +2,29 @@
     function productos_json(&$boletos, &$camisas = 0, &$etiquetas = 0){
 
         $dias = array( 0 => 'un_dia', 1 => 'pase_completo', 2 => 'pase_2dias');
-        $total_boletos = array_combine($dias, $boletos);
-        $json = array();
 
-        foreach($total_boletos as $key=>$boletos):
-            if( (int) $boletos > 0 ):
-                $json[$key] = (int) $boletos;
-            endif;
-        endforeach;
+        unset($boletos['un_dia']['precio']);
+        unset($boletos['dos_dias']['precio']);
+        unset($boletos['completo']['precio']);
+
+        $total_boletos = array_combine($dias, $boletos);
+        // $json = array();
+
+        // foreach($total_boletos as $key=>$boletos):
+        //     if( (int) $boletos > 0 ):
+        //         $json[$key] = (int) $boletos;
+        //     endif;
+        // endforeach;
 
         if( (int)$camisas):
-            $json['camisas'] = $camisas;
+            $total_boletos['camisas'] = $camisas;
         endif;
 
         if( (int)$etiquetas):
-            $json['etiquetas'] = $etiquetas;
+            $total_boletos['etiquetas'] = $etiquetas;
         endif;
 
-        return json_encode($json);
+        return json_encode($total_boletos);
     };
 
     function eventos_json(&$eventos){

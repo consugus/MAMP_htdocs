@@ -73,7 +73,7 @@
                 <div class="orden">
                   <label for="pase_dosdias">Boletos deseados</label>
                   <input type="number" id="pase_dos_dias" min="0" size="3" name="boletos[dos_dias][cantidad]" placeholder="0">
-                  <input type="hidden" value="45" name="boletos[dos_dia][precio]">
+                  <input type="hidden" value="45" name="boletos[dos_dias][precio]">
                 </div>
               </div>
             </li>

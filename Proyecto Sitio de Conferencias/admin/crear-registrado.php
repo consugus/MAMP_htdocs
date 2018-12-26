@@ -122,7 +122,7 @@
                         <div class="orden">
                           <label for="pase_dosdias">Boletos deseados</label>
                           <input type="number" class="form-contol" id="pase_dos_dias" min="0" size="3" name="boletos[dos_dias][cantidad]" placeholder="0">
-                          <input type="hidden" value="45" name="boletos[dos_dia][precio]">
+                          <input type="hidden" value="45" name="boletos[dos_dias][precio]">
                         </div>
                       </div>
                     </li>
@@ -171,7 +171,7 @@
                                     <p><?php echo $tipo ?>:</p>
                                     <?php foreach ($evento_dia as $evento): ?>
                                         <label>
-                                            <input type="checkbox" class="flat-red" name="registro[]" id="<?php echo $evento['id']; ?>" value="<?php echo $evento['id']; ?>">
+                                            <input type="checkbox" class="flat-red" name="registro_evento[]" id="<?php echo $evento['id']; ?>" value="<?php echo $evento['id']; ?>">
                                             <time><?php echo date( 'H:i', strtotime($evento['hora']) ); ?></time> <?php echo $evento['nombre_evento']; ?>
                                             <br>
                                             <span class="autor"><?php echo $evento['nombre_invitado'] . " " . $evento['apellido_invitado'];  ?></span>

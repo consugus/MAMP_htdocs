@@ -2,19 +2,42 @@
 include_once "funciones/funciones.php";
 // die(json_encode($_POST));
 
-$id_registro = $_POST['id_registro'];
-$nombre_categoria = $_POST['nombre_categoria'];
-$icono = $_POST['icono'];
+$nombre = $_POST['nombre_registrado'];
+$apellido = $_POST['apellido_registrado'];
+$email = $_POST['email_registrado'];
+$boletos = $_POST['boletos'];
+$camisas = $_POST['pedido_extra']['camisas']['cantidad'];
+$etiquetas = $_POST['pedido_extra']['etiquetas']['cantidad'];
+$pedido = productos_json($boletos, $camisas, $etiquetas);
+
+$total = number_format($_POST['total_pedido'], 2, '.', '');
+
+$regalo = $_POST['regalo'];
+$eventos = $_POST['registro_evento'];
+$registro_eventos = eventos_json($eventos);
+
 
 
 // agregar-categoría
 if( isset($_POST['registro']) && $_POST['registro'] == "nuevo" ){
     // die(json_encode($_POST)); // a partir de die, el código que sigue no se ejecuta
 
+    $respuesta = array(
+        'boletos' => $pedido
+    );
+
     try {
-        $sql = "INSERT INTO categoria_evento (cat_evento, icono) VALUES (?, ? ) ";
+        $sql = "INSERT INTO registrados (nombre_registrado,
+                                         apellido_registrado,
+                                         email_registrado,
+                                         fecha_registro,
+                                         pases_articulos,
+                                         talleres_registrados,
+                                         regalo,
+                                         total_pagado,
+                                         pagado) VALUES (?, ?, ?, NOW(),?, ?, ?, ?, 1  ) ";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ss', $nombre_categoria, $icono );
+        $stmt->bind_param('sssssis', $nombre, $apellido, $email, $pedido, $registro_eventos, $regalo, $total );
         $stmt->execute();
         $id_insertado = $stmt->insert_id;
         if($stmt->affected_rows > 0){
