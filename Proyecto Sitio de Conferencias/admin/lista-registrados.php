@@ -48,7 +48,7 @@
                                             r.total_pagado, r.pagado
                                     FROM registrados r JOIN regalos reg
                                     ON r.regalo = reg.id_regalo
-                                    ORDER BY id_registrado";
+                                    ORDER BY r.nombre_registrado DESC";
                             $resultado = $conn->query($sql);
                         } catch (Exception $e) {
                           echo $e->getMessage();
@@ -57,7 +57,7 @@
                         // echo "<pre>";
                         //     var_dump( ($categorias) );
                         // echo "</pre>";
-                        while($registrados = $resultado->fetch_assoc()){ ?>
+                        while($registrados = $resultado->fetch_assoc()): ?>
                             <tr>
                                 <td>
                                     <?php
@@ -74,7 +74,7 @@
                                 <td><?php  echo $registrados['email_registrado'];?></td>
                                 <td><?php  echo date('d/m/Y', strtotime($registrados['fecha_registro']) );?></td>
                                 <td>
-                                    <?php  
+                                    <?php
                                         $arreglo_articulos = array(
                                           'un_dia' => 'Pase por 1 día',
                                           'pase_2dias' => 'Pase por 2 días',
@@ -85,7 +85,7 @@
                                         $articulos = json_decode($registrados['pases_articulos'], true);
                                         foreach ($articulos as $llave => $articulo) {
                                           echo  $articulo . ' ' . $arreglo_articulos[$llave] . '<br>';
-                                        }
+                                        } // end foreach articulos
                                     ?>
                                 </td>
                                 <td>
@@ -93,12 +93,11 @@
                                         $talleres = json_decode($registrados['talleres_registrados'], true);
                                         $talleres = implode("', '", $talleres['eventos']);
                                         $sql = "SELECT nombre_evento, fecha_evento, hora_evento FROM eventos WHERE clave IN ('$talleres') ";
-                                        $resultado = $conn->query($sql);
+                                        $result = $conn->query($sql);
 
-                                        while($eventos = $resultado->fetch_assoc()){
+                                        while($eventos = $result->fetch_assoc()){
                                           echo $eventos['nombre_evento'] . " " . $eventos['fecha_evento'] . " " . $eventos['hora_evento'] . "<br>";
-                                        };
-
+                                        };// end while eventos
                                     ?>
                                 </td>
                                 <td><?php  echo $registrados['nombre_regalo'];?></td>
@@ -109,7 +108,7 @@
                                 </td>
                             </tr>
 
-                        <?php  } ?>
+                        <?php  endwhile ?> <!-- end while registrados -->
                 </tbody>
                 <tfoot>
                 <tr>

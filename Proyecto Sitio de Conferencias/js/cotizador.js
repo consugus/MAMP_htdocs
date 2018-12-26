@@ -15,6 +15,14 @@
         var paseCompleto = document.getElementById("pase_completo");
         var paseDosDias = document.getElementById("pase_dos_dias");
 
+        var formulario_editar = document.getElementsByClassName('editar-registrado');
+        if(formulario_editar){
+            if( parseInt(pasePorDia.value, 10) || parseInt(paseDosDias.value, 10) || parseInt(paseCompleto.value, 10) ){
+                mostrarDias();
+            };
+        };
+
+
         // Botones y Divs
         var calcular = document.getElementById("calcular");
         var errorDiv = document.getElementById("error");
@@ -108,25 +116,7 @@
             paseDosDias.addEventListener("blur", mostrarDias );
             paseCompleto.addEventListener("blur", mostrarDias );
 
-            function mostrarDias(){
-
-                document.getElementById("viernes").style.display = "none";
-                document.getElementById("sabado").style.display = "none";
-                document.getElementById("domingo").style.display = "none";
-
-                if(pasePorDia.value > 0){
-                    document.getElementById("viernes").style.display = "block";
-                };
-                if(paseDosDias.value > 0){
-                    document.getElementById("viernes").style.display = "block";
-                    document.getElementById("sabado").style.display = "block";
-                };
-                if(paseCompleto.value > 0){
-                    document.getElementById("viernes").style.display = "block";
-                    document.getElementById("sabado").style.display = "block";
-                    document.getElementById("domingo").style.display = "block";
-                };
-            };
+            // acá estaba
 
             nombre.addEventListener("blur", function(){
                 if(this.value == ""){
@@ -161,6 +151,26 @@
                 };
             });
 
+        };
+
+        function mostrarDias(){
+
+            document.getElementById("viernes").style.display = "none";
+            document.getElementById("sabado").style.display = "none";
+            document.getElementById("domingo").style.display = "none";
+
+            if(parseInt(pasePorDia.value, 10) > 0){
+                document.getElementById("viernes").style.display = "block";
+            };
+            if( parseInt(paseDosDias.value, 10) > 0){
+                document.getElementById("viernes").style.display = "block";
+                document.getElementById("sabado").style.display = "block";
+            };
+            if( parseInt(paseCompleto.value, 10) > 0){
+                document.getElementById("viernes").style.display = "block";
+                document.getElementById("sabado").style.display = "block";
+                document.getElementById("domingo").style.display = "block";
+            };
         };
 
     }); // DOMContentLoaded
