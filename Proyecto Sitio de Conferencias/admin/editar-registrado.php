@@ -248,7 +248,7 @@
                         <small>(HTML5, CSS3, JavaScript, Chrome, Google)</small>
                       </label>
                       <br>
-                      <input type="number" min="0"  class="form-control" name="pedido_extra[etiquetas][cantidad]" size="3" id="etiquetas" placeholder="0" value="<?php echo $pedido['etiquetas']?>">>
+                      <input type="number" min="0"  class="form-control" name="pedido_extra[etiquetas][cantidad]" size="3" id="etiquetas" placeholder="0" value="<?php echo $pedido['etiquetas']?>">
                       <input type="hidden" value="2" name="pedido_extra[etiquetas][precio]">
                     </div><!-- orden -->
                     <div class="orden">
@@ -273,11 +273,8 @@
                       <p>Pagado anteriormente: <?php echo $registrado['total_pagado'] ?></p>
                       <div id="lista-productos"> </div>
                       <div>
-                      
                         <p>Total:</p>
                         <div id="suma-total"> </div>
-                        <input type="hidden" name="total_pedido" id="total_pedido">
-                        <!-- <input type="submit" id="btnRegistro" name="submit" class="button" value="Pagar" > -->
                       </div>
                     </div><!-- total -->
                   </div><!-- extras -->
@@ -288,9 +285,11 @@
 
             </div><!-- /.box-body -->
             <div class="box-footer">
+                <input type="hidden" name="total_pedido" id="total_pedido">
+                <input type="hidden" name="total_descuento" id="total_descuento" value="total_descuento">
                 <input type="hidden" name="registro" value="actualizar">
-                <!-- <input type="hidden" id="id_registrado" value="<?php echo $registrado['id_registrado']; ?>"> -->
-                <!-- <input type="hidden" id="fecha_registro" value="<?php echo $registrado['fecha_registro']; ?>"> -->
+                <input type="hidden" name="id_registrado" id="id_registrado" value="<?php echo $registrado['id_registrado']; ?>">
+                <input type="hidden" name="fecha_registro" id="fecha_registro" value="<?php echo $registrado['fecha_registro']; ?>">
                 <button type="submit" class="btn btn-primary" id="btnRegistro" >Guardar</button> <!-- id="crear-registro" -->
             </div>
           </form>

@@ -84,7 +84,12 @@
                                         );
                                         $articulos = json_decode($registrados['pases_articulos'], true);
                                         foreach ($articulos as $llave => $articulo) {
-                                          echo  $articulo . ' ' . $arreglo_articulos[$llave] . '<br>';
+                                          if(array_key_exists('cantidad', $articulo) ){
+                                            echo  $articulo['cantidad'] . ' ' . $arreglo_articulos[$llave] . '<br>';
+                                          } else{
+                                            echo  $articulo . ' ' . $arreglo_articulos[$llave] . '<br>';
+                                          };
+
                                         } // end foreach articulos
                                     ?>
                                 </td>
@@ -92,7 +97,7 @@
                                     <?php
                                         $talleres = json_decode($registrados['talleres_registrados'], true);
                                         $talleres = implode("', '", $talleres['eventos']);
-                                        $sql = "SELECT nombre_evento, fecha_evento, hora_evento FROM eventos WHERE clave IN ('$talleres') ";
+                                        $sql = "SELECT nombre_evento, fecha_evento, hora_evento FROM eventos WHERE clave IN ('$talleres') OR evento_id IN ('$talleres') ";
                                         $result = $conn->query($sql);
 
                                         while($eventos = $result->fetch_assoc()){

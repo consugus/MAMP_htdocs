@@ -9,14 +9,13 @@ $boletos = $_POST['boletos'];
 $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
 $etiquetas = $_POST['pedido_extra']['etiquetas']['cantidad'];
 $pedido = productos_json($boletos, $camisas, $etiquetas);
-
+$id_registrado = $_POST['id_registrado'];
 $total = number_format($_POST['total_pedido'], 2, '.', '');
-
+$total_pagado = $_POST['total_pedido'];
+$fecha_registro = $_POST[''];
 $regalo = $_POST['regalo'];
 $eventos = $_POST['registro_evento'];
 $registro_eventos = eventos_json($eventos);
-
-
 
 // agregar-categoría
 if( isset($_POST['registro']) && $_POST['registro'] == "nuevo" ){
@@ -68,12 +67,12 @@ if( isset($_POST['registro']) && $_POST['registro'] == "nuevo" ){
 if(isset($_POST['registro']) && $_POST['registro'] == "actualizar" ){
     // die(json_encode($_POST));
     try {
-
-        $stmt = $conn->prepare("UPDATE categoria_evento SET cat_evento = ?, icono = ?, editado = NOW() WHERE id_categoria = ? ");
-        $stmt->bind_param("ssi", $nombre_categoria, $icono, $id_registro);
+        $sql = "UPDATE registrados SET nombre_registrado = ?, apellido_registrado = ?, email_registrado = ?, pases_articulos = ?, talleres_registrados = ?, regalo = ?, total_pagado = ? editado = NOW() WHERE id_registrado = ? ";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssisi",   $nombre, $apellido, $email, $pedido, $registro_eventos, $regalo, $total_pagado, $id_registrado );
 
         $stmt->execute();
-        if($stmt->affected_rows){
+        if($stmt->affected_rows > 0){
             $respuesta = array(
                 'respuesta' => "exito",
                 'id_actualizado' => $stmt->insert_id
@@ -98,7 +97,7 @@ if(isset($_POST['registro']) && $_POST['registro'] == "eliminar" ){
     // die(json_encode($_POST));
     $id_borrar = $_POST['id'];
     try {
-        $stmt = $conn->prepare("DELETE FROM categoria_evento WHERE id_categoria = ? ");
+        $stmt = $conn->prepare("DELETE FROM registrados WHERE id_registrado = ? ");
         $stmt->bind_param("i", $id_borrar);
         $stmt->execute();
         if($stmt->affected_rows){
