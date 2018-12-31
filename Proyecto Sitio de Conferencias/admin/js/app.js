@@ -41,7 +41,18 @@ $(document).ready(function () {
     };
   });
 
-
-
+  // LINE CHART - MORRIS CHART
+  $.getJSON("servicio-registrados.php", function (data) {
+    var line = new Morris.Line({
+      element: 'grafica_registros',
+      resize: true,
+      data: data,
+      xkey: 'fecha',
+      ykeys: ['cantidad'],
+      labels: ['Item 1'],
+      lineColors: ['#3c8dbc'],
+      hideHover: 'auto'
+    });
+  });
 
 });
