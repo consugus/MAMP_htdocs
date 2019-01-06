@@ -204,15 +204,20 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../js/bootstrap.min.js"></script>
+<!-- <script src="../js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="../js/jquery.slimscroll.min.js"></script>
+<!-- <script src="../js/jquery.slimscroll.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../js/fastclick.js"></script>
+<!-- <script src="../js/fastclick.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../js/adminlte.min.js"></script>
+<!-- <script src="../js/adminlte.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../js/demo.js"></script>
 <!-- SweetAlert2 -->
@@ -220,11 +225,13 @@
 <!-- Personal JavaScript code -->
 <script src="js/admin-ajax.js"></script>
 <!-- jquery.dataTables.min.js -->
-<script src="js/jquery.dataTables.min.js"></script>
+<!-- <script src="js/jquery.dataTables.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
 <!-- dataTables.bootstrap.min.js -->
 <script src="js/dataTables.bootstrap.min.js"></script>
 <!-- jquery.slimscroll.min.js -->
-<script src="js/jquery.slimscroll.min.js"></script>
+<!-- <script src="js/jquery.slimscroll.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 <!-- app.js -->
 <script src="js/app.js"></script>
 <!-- cotizador.js -->

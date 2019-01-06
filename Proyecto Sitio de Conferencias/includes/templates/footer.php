@@ -78,20 +78,21 @@
 
     </footer><!-- seccion site-footer -->
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-    <script>
-      window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script> window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>') </script>
     <script src="js/plugins.js"></script>
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.lettering.js"></script>
+    <!-- <script src="js/jquery.animateNumber.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.js"></script>
+    <!-- <script src="js/jquery.countdown.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+    <!-- <script src="js/jquery.lettering.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/anno.js"></script>
-    <script src="js/jquery-scrollintoview.js"></script>
 
+    <script src="js/anno.js"></script>
+    <!-- <script src="js/jquery-scrollintoview.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollintoview/1.8/jquery.scrollintoview.min.js"></script>
     <!-- Código de Mailchimp para la generación de la suscripción a la lista de correos -->
     <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"4a0a16cfabe16bae5c3d3993c","lid":"de8e632018","uniqueMethods":true}) })</script>
 
@@ -99,8 +100,6 @@
         // almacena en archivo el nombre de la página que está abierta
         // en nuestro proyecto una página podra ser invitados.php
         $archivo = basename($_SERVER['PHP_SELF']); // <-- almacenará 'invitados.php'
-
-
         $pagina = str_replace(".php", "", $archivo);  // str_replace(find, replace, string)
                                                       // find    -> texto a buscar para reemplazar
                                                       // replace -> texto con lo que se va a reemplazar la parte encontrada
@@ -108,9 +107,11 @@
                                                       // el resultado es que $pagina contendrá "invitado"
 
         if($pagina == 'invitados' || $pagina == 'index'){
-          echo '<script src="js/jquery.colorbox-min.js"></script>';
+          //echo '<script src="js/jquery.colorbox-min.js"></script>';
+          echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js"></script>';
         } else if ($pagina == 'conferencia') {
-          echo '<script src="js/lightbox.js"></script>';
+          //echo '<script src="js/lightbox.js"></script>';
+          echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>';
         }
     ?>
 

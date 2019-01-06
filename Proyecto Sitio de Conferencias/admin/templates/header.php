@@ -8,12 +8,16 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.2.1/cerulean/bootstrap.min.css" /> -->
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../css/ionicons.min.css">
+  <!-- <link rel="stylesheet" href="../css/ionicons.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.8/css/ionicons.min.css" />
   <!-- Theme style -->
   <link rel="stylesheet" href="../css/AdminLTE.min.css">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script> -->
   <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../css/_all-skins.min.css">
   <!-- Personal Styles applied -->
